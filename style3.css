@@ -1,0 +1,270 @@
+/* General Styles */
+body {
+    /* font-family:   Arial, sans-serif; */
+    font-family: "Josefin Sans", serif;
+    font-optical-sizing: auto;
+    /* font-weight: <weight>; */
+    /* font-style: normal; */
+    margin: 0;
+    padding: 0;
+}
+
+.containerfirst {
+    height: auto; 
+    width: 75vw;
+    margin: auto;
+    background: #d9edf8;
+    border-radius: 21px;
+    position: relative; 
+    overflow: hidden; 
+    margin-bottom: 15vh;
+    padding: 20px; 
+}
+
+.navbar2 {
+    margin: 2vh 5vw 7vh 5vw;
+}
+
+.containerfirst img {
+    float: right; 
+    max-width: 40%; 
+    height: auto; 
+    margin-right: 2vw; 
+}
+
+.containerfirst h1 {
+    color: #3b80a8;
+    margin-left: 10vw;
+    padding-top: 4vh;
+}
+
+.containerfirst h1 span {
+    color: #37779c;
+    font-weight: bolder;
+}
+
+.containerfirst p {
+    color: #75aece;
+    font-size: 1.3em;
+    margin-left: 4vw;
+    padding-top: 3vh;
+}
+
+.containerfirst h2 {
+    color: #579cc4;
+    margin-left: 9vw;
+}
+
+.containerfirst button {
+    float: right; 
+    margin-right: 19vw;
+    margin-top: 3vh;
+}
+
+.containerfirst button a {
+    text-decoration: none;
+    color: #37779c;
+}
+
+/* Card Styles */
+.card {
+    color: #37779c;
+    text-align: center;
+    margin: 1vw; 
+    box-shadow: 0px 0px 20px 0.5px #75aece;
+}
+
+.card-img-top {
+    height: 24vh;
+    width: 100%;
+    
+}
+
+/* Flexbox for Cards */
+.cards {
+    display: flex;
+   
+    justify-content: space-between;
+}
+
+/* Next Part Styles */
+.nextpart {
+    display: flex;
+    flex-direction: row;
+    margin: 4vw;
+    margin-top: 19vh;
+}
+
+.contentsch {
+    margin-left: 7vw;
+}
+
+.contentsch h1,
+.contentsch h4 {
+    color: #3b80a8;
+    font-weight: bolder;
+}
+
+.contentsch p {
+    color: #75aece;
+    font-weight: bold;
+}
+
+.contentsch li {
+    color: #75aece;
+    padding: 0.5vw;
+    font-weight: bold;
+}
+
+/* Last Part Styles */
+.lastpart {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2vw;
+}
+
+.lastimg img {
+    height: 85%;
+}
+
+.contlast {
+    margin-top: 1vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding: 2vw;
+}
+
+.contlast h1 {
+    color: #3b80a8;
+    font-weight: bold;
+}
+
+.contlast h1 span {
+    color: #37779c;
+    font-weight: bolder;
+}
+
+.contlast p {
+    color: #75aece;
+    font-weight: bold;
+    padding: 2vw 0;
+    word-spacing: 2px;
+}
+
+.contlast a {
+    text-decoration: none;
+    color: #37779c;
+}
+
+.contlast button {
+    margin-left: 8vw;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    .containerfirst {
+        width: 85vw; 
+    }
+
+    .containerfirst img {
+        max-width: 50%; 
+    }
+
+    .containerfirst h1,
+    .containerfirst p,
+    .containerfirst h2 {
+        margin-left: 5vw; 
+        text-align: center; 
+    }
+
+    .containerfirst button {
+        margin-right: 5vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .cards {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .card {
+        width: 90%; 
+    }
+
+    .nextpart {
+        flex-direction: column; 
+        align-items: center; 
+
+    .contentsch {
+        margin-left: 0; 
+        text-align: center;
+    }
+
+    .lastpart {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contlast {
+        margin-left: 0; 
+        margin-right: 0; 
+        text-align: center; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .containerfirst {
+        width: 90%; 
+    }
+
+    .containerfirst img {
+        float: none; 
+        display: block; 
+        margin: 0 auto 2vh auto; 
+        max-width: 80%; 
+    }
+
+    .containerfirst button {
+        float: none; 
+        margin: 2vh auto; 
+        display: block; 
+        width: 80%; 
+        padding: 12px 0; 
+        font-size: 1.1em; 
+    }
+
+    .containerfirst h1,
+    .containerfirst p,
+    .containerfirst h2 {
+        margin-left: 0; 
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .containerfirst {
+        padding: 10px; 
+    }
+
+    .containerfirst h1 {
+        font-size: 1.5em; 
+    }
+
+    .containerfirst p {
+        font-size: 1em; 
+    }
+
+    .card {
+        margin: 10px 0; 
+        width: 100%; 
+    }
+
+    .lastimg img {
+        width: 100%; 
+        height: auto;
+        /* width: auto;
+        height: 100%; */
+    }
+}
