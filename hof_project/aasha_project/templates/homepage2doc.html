@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - Virtual Doctor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .hero {
+            background: url('https://source.unsplash.com/1600x900/?medical,hospital') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            color: #0d6efd;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .logo img {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039436.png" alt="Logo">
+        <h1 class="ms-3">Virtual Doctor</h1>
+    </div>
+
+    <!-- Welcome Statement -->
+    <section class="container my-4 text-center">
+        <h2>Welcome, Doctor!</h2>
+        <p>Manage your appointments, patients, and medical records with ease.</p>
+    </section>
+    
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Your Dashboard</h1>
+        <p>Streamline your practice with AI-powered tools and real-time patient management.</p>
+        <a href="{% url 'doctor_dashboard' %}" class="btn btn-success btn-lg">
+            <i class="bi bi-speedometer2"></i> Go to Dashboard
+        </a>
+        <a href="{% url 'homepage' %}" class="btn btn-danger btn-lg">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </header>
+
+    <!-- Dashboard Features -->
+    <section class="container my-5">
+        <h2 class="text-center">Doctor's Portal</h2>
+        <div class="row text-center mt-4">
+            <div class="col-md-4">
+                <i class="feature-icon bi bi-calendar-check"></i>
+                <h5>Upcoming Appointments</h5>
+                <p>View and manage your scheduled consultations.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="feature-icon bi bi-file-medical"></i>
+                <h5>Patient Records</h5>
+                <p>Access and update patient medical history securely.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="feature-icon bi bi-chat-dots"></i>
+                <h5>Messaging System</h5>
+                <p>Communicate with patients in real time.</p>
+            </div>
+        </div>
+        <div class="row text-center mt-4">
+            <div class="col-md-4">
+                <i class="feature-icon bi bi-prescription"></i>
+                <h5>Prescriptions</h5>
+                <p>Generate and send prescriptions online.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="feature-icon bi bi-clipboard-pulse"></i>
+                <h5>AI Diagnosis Assistance</h5>
+                <p>Utilize AI insights for better diagnosis and treatment.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="feature-icon bi bi-cash-stack"></i>
+                <h5>Billing & Payments</h5>
+                <p>Manage payments and invoices with ease.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-3">
+        <p>&copy; 2025 Virtual Doctor Appointments | <a href="#" class="text-white">Privacy Policy</a></p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
