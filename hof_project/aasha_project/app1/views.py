@@ -6,7 +6,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model  
 from .models import Doctor, Patient 
-
+from django.http import JsonResponse
+from django.db.models import Q
 
 CustomUser = get_user_model()
 
@@ -206,3 +207,35 @@ def homepage2doc(request):
 @login_required(login_url='login')
 def homepage2pat(request):
     return render(request, 'homepage2pat.html')
+
+
+def search_doctors(request):
+    query = request.GET.get("q", "").strip()
+    
+    if query:
+        doctors = Doctor.objects.filter(
+            Q(full_name__icontains=query) | Q(specialization__icontains=query)
+        )[:5]  # Limit to 5 results
+
+        # print("Doctors Found:", doctors)
+        
+        
+        results = [
+            {
+                "id": doctor.id,
+                "full_name": doctor.full_name,
+                "specialization": doctor.specialization,
+                "workplace": doctor.workplace
+            }
+            for doctor in doctors
+        ]
+    else:
+        results = []
+
+    return JsonResponse({"results": results})
+
+
+def doctor_profile(request, doctor_id):
+    doctor = get_object_or_404(Doctor, id=doctor_id)
+    return render(request, 'doctor_profile.html', {'doctor': doctor})
+

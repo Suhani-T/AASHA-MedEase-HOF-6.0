@@ -18,6 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from app1 import views
 
+from app1.views import search_doctors
+from app1.views import doctor_profile
+from app1.views import logout_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -46,6 +50,14 @@ urlpatterns = [
 
     path('homepage2doc/', views.homepage2doc, name='homepage2doc'),
     path('homepage2pat/', views.homepage2pat, name='homepage2pat'),
+
+    path("search_doctors/", search_doctors, name="search_doctors"),
+
+    path('doctor/<int:doctor_id>/', doctor_profile, name='doctor_profile'),
+    path('patient/patient_dashboard/<int:doctor_id>/', views.patient_dashboard, name='patient_dashboard'),
+
+    path('logout/', logout_view, name='logout'),
+
 ]
 
 

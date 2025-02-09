@@ -49,9 +49,14 @@
         <a href="{% url 'doctor_dashboard' %}" class="btn btn-success btn-lg">
             <i class="bi bi-speedometer2"></i> Go to Dashboard
         </a>
-        <a href="{% url 'homepage' %}" class="btn btn-danger btn-lg">
-            <i class="bi bi-box-arrow-right"></i> Logout
-        </a>
+
+        <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-lg">
+                <i class="bi bi-box-arrow-right"></i>Logout
+            </button>
+        </form>
+        
     </header>
 
     <!-- Dashboard Features -->
