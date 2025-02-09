@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
@@ -167,6 +167,11 @@ def login_view(request):
             messages.error(request, 'Invalid username or password.')
         return redirect('login')
     return render(request, 'login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('homepage')
 
 # Profile Views
 def doctor_profile(request):
