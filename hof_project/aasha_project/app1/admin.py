@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Doctor, Patient,Appointment
+from .models import CustomUser, Doctor, Patient
 
 admin.site.register(Doctor)
 admin.site.register(Patient)
-admin.site.register(Appointment)
+
 
 class CustomUserAdmin(UserAdmin):  
     list_display = ('username', 'email', 'is_doctor', 'is_patient', 'is_active', 'is_staff')  
