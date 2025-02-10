@@ -9,6 +9,14 @@ from .models import Doctor, Patient
 from django.http import JsonResponse
 from django.db.models import Q
 
+from .models import Appointment
+from django.views.decorators.csrf import csrf_exempt
+import json
+import datetime
+from django.utils import timezone
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_POST
+
 CustomUser = get_user_model()
 
 
@@ -66,7 +74,7 @@ def doctor_registration(request):
             user=user, full_name=full_name, phone=phone, dob=dob, gender=gender,
             license_number=license_number, specialization=specialization,
             experience=experience, workplace=workplace, address=address,
-            consultation_mode=consultation_mode, available_days=",".join(available_days),
+            consultation_mode=consultation_mode, available_days=available_days,
             start_time=start_time, end_time=end_time, max_patients=max_patients,
             medical_degree=medical_degree, government_id=government_id, medical_license=medical_license
         )
@@ -173,7 +181,7 @@ def logout_view(request):
     logout(request)
     return redirect('homepage')
 
-# Profile Views
+
 def doctor_profile(request):
     if not request.user.is_authenticated:
         return redirect('login')
@@ -183,18 +191,29 @@ def doctor_profile(request):
     messages.error(request, 'Doctor profile not found.')
     return redirect('login')
 
-def patient_profile(request):
+def patient_profile(request, pk):
     if not request.user.is_authenticated:
         return redirect('login')
-    patient = Patient.objects.filter(user=request.user).first()
+
+    
+    patient = Patient.objects.filter(id=pk).first()
     if patient:
         return render(request, 'patient_profile.html', {'patient': patient})
+    
     messages.error(request, 'Patient profile not found.')
     return redirect('login')
 
-# Dashboard & Other Views
-def doctor_dashboard(request):
-    return render(request, 'doc_dashboard.html')
+def patient_profile_actual(request, pk):
+    patient = get_object_or_404(Patient, pk=pk)
+    return render(request, 'patient_profile.html', {'patient': patient})
+
+
+def doctor_profile_actual(request, pk):
+    doctor = get_object_or_404(Doctor, pk=pk)
+    return render(request, 'doctor_profile.html', {'doctor': doctor})
+
+
+
 
 def patient_dashboard(request):
     return render(request, 'pat_dashboard.html')
@@ -220,9 +239,9 @@ def search_doctors(request):
     if query:
         doctors = Doctor.objects.filter(
             Q(full_name__icontains=query) | Q(specialization__icontains=query)
-        )[:5]  # Limit to 5 results
+        )[:5]  
 
-        # print("Doctors Found:", doctors)
+       
         
         
         results = [
@@ -244,3 +263,120 @@ def doctor_profile(request, doctor_id):
     doctor = get_object_or_404(Doctor, id=doctor_id)
     return render(request, 'doctor_profile.html', {'doctor': doctor})
 
+
+@login_required
+def doctor_dashboard(request):
+
+    doctor = get_object_or_404(Doctor, user=request.user)
+    today = timezone.now().date()
+
+    
+    todays_appointments = (
+        Appointment.objects.filter(doctor=doctor, date=today)
+        .order_by("time")
+        .select_related("patient")
+    )
+
+   
+    upcoming_appointments = (
+        Appointment.objects.filter(doctor=doctor, date__gt=today)
+        .order_by("date")
+        .select_related("patient")
+    )
+
+    return render(
+        request,
+        "doc_dashboard.html",
+        {
+            "doctor": doctor,
+            "todays_appointments": todays_appointments,
+            "upcoming_appointments": upcoming_appointments,
+        },
+    )
+
+@login_required
+def book_appointment(request):
+    if request.method == "POST":
+        doctor_name = request.POST.get("doctor_name")
+        doctor = None
+
+       
+        appointment_date = request.POST.get("date")
+        if appointment_date < str(timezone.now().date()): 
+            messages.error(request, "Cannot book an appointment for a past date.")
+            return redirect(request.META.get('HTTP_REFERER', 'pat_dashboard'))
+
+        
+        try:
+            doctor = Doctor.objects.get(full_name__iexact=doctor_name)  
+        except Doctor.DoesNotExist:
+            doctor = Doctor.objects.create(full_name=doctor_name)  
+
+       
+        appointment = Appointment.objects.create(
+            patient=request.user.patient_profile,
+            doctor=doctor,
+            reason=request.POST.get("reason"),
+            date=appointment_date,
+            mode=request.POST.get("mode")
+        )
+
+
+        return redirect(request.META.get('HTTP_REFERER', 'pat_dashboard'))
+
+    return redirect("pat_dashboard")
+
+@login_required
+def patient_dashboard(request):
+    """Fetch the current appointment and upcoming appointments for the logged-in patient."""
+    patient = request.user.patient_profile  
+    today = timezone.now().date()
+
+    
+    current_appointment = Appointment.objects.filter(
+        patient=patient,
+        date=today,
+        is_completed=False
+    ).order_by('id').first()  
+
+    
+    queue_position = None
+    if current_appointment:
+        
+
+        queue_position = Appointment.objects.filter(
+            doctor=current_appointment.doctor,
+            date=today,
+            
+            id__lt=current_appointment.id  
+        ).count()
+
+    
+    upcoming_appointments = Appointment.objects.filter(
+        patient=patient,
+        is_completed=False,
+        date__gt=today
+    ).order_by('date', 'id')  
+
+    return render(request, 'pat_dashboard.html', {
+        'current_appointment': current_appointment,
+        'upcoming_appointments': upcoming_appointments,
+        'queue_position': queue_position 
+    })
+
+
+@csrf_protect
+@require_POST
+@login_required
+def mark_appointment_completed(request, appointment_id):
+    
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+
+    if request.user != appointment.doctor.user:
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+
+    data = json.loads(request.body)
+    appointment.is_completed = data.get('is_completed', False)
+    appointment.save()
+
+    return JsonResponse({'success': True, 'completed': appointment.is_completed})
