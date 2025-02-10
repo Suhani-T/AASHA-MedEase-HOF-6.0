@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .profile-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .profile-icon {
+            font-size: 4rem;
+            color: #198754;
+        }
+        .info-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .icon {
+            font-size: 1.5rem;
+            color: #198754;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="profile-card">
+        <div class="profile-header mb-4">
+            <i class="bi bi-person-circle profile-icon"></i>
+            <div>
+                <h2 class="fw-bold">{{ doctor.full_name }}</h2>
+            </div>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-envelope icon"></i> <strong>Email:</strong> {{ doctor.user.email }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-telephone icon"></i> <strong>Phone:</strong> {{ doctor.phone }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Specialization & Workplace -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-heart-pulse icon"></i> <strong>Specialization:</strong> {{ doctor.specialization }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-building icon"></i> <strong>Workplace:</strong> {{ doctor.workplace }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Consultation Mode -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-star icon"></i> <strong>Experience:</strong> {{ doctor.experience }} years
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-laptop icon"></i> <strong>Consultation Mode:</strong> {{ doctor.consultation_mode }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="info-box">
+            <i class="bi bi-calendar icon"></i> <strong>Available Days:</strong> {{ doctor.available_days }}
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-clock icon"></i> <strong>Start Time:</strong> {{ doctor.start_time }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-clock icon"></i> <strong>End Time:</strong> {{ doctor.end_time }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Address -->
+        <div class="info-box">
+            <i class="bi bi-geo-alt icon"></i> <strong>Address:</strong> {{ doctor.address }}
+        </div>
+
+        <!-- Book Appointment Button -->
+        <div class="text-center mt-4">
+            <a href="{% url 'patient_dashboard' %}" class="btn btn-success"><i class="bi bi-calendar-check"></i> Book Appointment</a>
+        </div>
+        <!-- <a href="{% url 'patient_dashboard' doctor.id %}" class="btn btn-success">
+            <i class="bi bi-calendar-check"></i> Book Appointment
+        </a> -->
+        
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

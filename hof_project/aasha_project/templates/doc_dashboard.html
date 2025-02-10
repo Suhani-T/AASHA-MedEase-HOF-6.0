@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}"> 
     <title>AASHA MedEase - Doctor Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <style>
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+        
         .sidebar {
-            flex: 0 0 200px;
+            width:250px;
             background-color: #f4f4f4;
             padding: 15px;
             border-radius: 8px;
         }
         .main-content {
             flex: 1;
-            margin-left: 15px;
         }
         .card-header {
             background-color: #007bff;
@@ -45,22 +43,38 @@
         .table a:hover {
             text-decoration: underline;
         }
-        .btn-group {
+        .checkbox-center {
+            transform: scale(1.5);
+            display: block;
+            margin: auto;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #007bff;
+        }
+        #profile_picture {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #555;
+            border: 2px solid #ccc;
         }
-        .btn {
-            width: 100%;
-            height: 40px;
-        }
-        /* Profile Icon */
-        .navbar-nav .nav-item img {
-            border: 2px solid white;
-            transition: 0.3s;
-        }
-        .navbar-nav .nav-item img:hover {
-            opacity: 0.8;
+
+        #profile_picture:hover {
+            background-color: #bbb;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -82,31 +96,31 @@
                 </li>
                 <!-- Profile Icon -->
                 <li class="nav-item ms-3">
-                    <a href="profile.html">
-                        <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle" width="40" height="40">
-                    </a>
+                    <div id="profile_picture">
+                        <i class="fas fa-user"></i> <!-- User Icon -->
+                    </div>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4 d-flex">
         <!-- Sidebar -->
         <div class="sidebar">
             <h5>Doctor Dashboard</h5>
             <ul class="list-group">
-                <li class="list-group-item"><a href="profile.html">My Profile</a></li>
+                <li class="list-group-item"><a href="doctor_profile.html">My Profile</a></li>
                 <li class="list-group-item"><a href="#">Settings</a></li>
                 <li class="list-group-item"><a href="#">Help</a></li>
             </ul>
         </div>
 
         <!-- Main Content -->
-        <div class="main-content">
+        <div class="main-content ms-4">
             <!-- Appointment List -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h4>Patients' Appointments</h4>
+                    <h4>Today's Appointments</h4>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -114,63 +128,68 @@
                             <tr>
                                 <th>#</th>
                                 <th>Patient Name</th>
-                                <th>Appointment Time</th>
-                                <th>View History</th>
+                                <th>Patient Profile</th>
                                 <th>Cause for Check-up</th>
+                                <th>Mode of Consultation</th>
                                 <th>Consultation Completed</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for appointment in todays_appointments %}
                             <tr>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>9:00 AM</td>
-                                <td><a href="#">View History</a></td>
-                                <td><a href="#">Cause for Check-up</a></td>
-                                <td><input type="checkbox" /></td>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ appointment.patient.full_name }}</td>
                                 <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-warning btn-sm">Cancel Appointment</button>
-                                        <button class="btn btn-info btn-sm">Reschedule</button>
-                                    </div>
+                                    <a href="{% url 'patient_profile' appointment.patient.id %}">View Profile</a>
+                                    <!-- <a href="{% url 'patient_profile' appointment.patient.user.id %}"> -->
+                                        <!-- <i class="fas fa-file-alt"></i> View Profile -->
+                                    <!-- </a> -->
+                                </td>
+                                <td>{{ appointment.reason }}</td>
+                                <td>{{ appointment.mode }}</td>
+                                <td>
+                                    <input type="checkbox" class="checkbox-center"
+                                        {% if appointment.is_completed %} checked {% endif %}
+                                        data-appointment-id="{{ appointment.id }}" />
                                 </td>
                             </tr>
+                            {% empty %}
                             <tr>
-                                <td>2</td>
-                                <td>Jane Smith</td>
-                                <td>10:00 AM</td>
-                                <td><a href="#">View History</a></td>
-                                <td><a href="#">Cause for Check-up</a></td>
-                                <td><input type="checkbox" /></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-warning btn-sm">Cancel Appointment</button>
-                                        <button class="btn btn-info btn-sm">Reschedule</button>
-                                    </div>
-                                </td>
+                                <td colspan="6" class="text-center">No appointments today.</td>
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Sam Brown</td>
-                                <td>11:00 AM</td>
-                                <td><a href="#">View History</a></td>
-                                <td><a href="#">Cause for Check-up</a></td>
-                                <td><input type="checkbox" /></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-warning btn-sm">Cancel Appointment</button>
-                                        <button class="btn btn-info btn-sm">Reschedule</button>
-                                    </div>
-                                </td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>
-                    <p><strong>Number of patients to go: 3</strong></p>
+                    <p>
+                        <strong><i class="fas fa-users"></i> Number of patients to go: <span id="patients-count">{{ todays_appointments|length }}</span></strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="card">
+                <div class="card-header">
+                    <h4>Upcoming Appointments</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for appointment in upcoming_appointments %}
+                            <li class="list-group-item">
+                                {{ appointment.patient.full_name }} - 
+                               
+                                {{ appointment.date|date:"F d, Y" }}
+                                ({{ appointment.mode }})
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item">No upcoming appointments.</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+        
 
     <!-- Footer -->
     <footer class="footer">
@@ -182,6 +201,41 @@
         </ul>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        function updatePatientCount() {
+            let remainingPatients = document.querySelectorAll('.checkbox-center:not(:checked)').length;
+            document.getElementById('patients-count').innerText = remainingPatients;
+        }
+
+        document.querySelectorAll('.checkbox-center').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const appointmentId = this.getAttribute('data-appointment-id');
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
+                fetch(`/mark_appointment_completed/${appointmentId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrfToken, // Fetch CSRF dynamically
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ is_completed: this.checked })
+                }).then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        alert('Error updating appointment status.');
+                        this.checked = !this.checked; // Revert checkbox
+                    } else {
+                        updatePatientCount(); // Update patient count dynamically
+                    }
+                })
+                .catch(error => {
+                    alert('Something went wrong.');
+                    this.checked = !this.checked; // Revert checkbox
+                });
+            });
+        });
+    </script>
 </body>
 </html>

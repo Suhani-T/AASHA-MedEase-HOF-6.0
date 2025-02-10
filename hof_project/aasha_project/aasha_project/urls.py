@@ -58,6 +58,8 @@ urlpatterns = [
 
     path('logout/', logout_view, name='logout'),
 
+    path('mark_appointment_completed/<int:appointment_id>/', views.mark_appointment_completed, name='mark_appointment_completed'),
+
 ]
 
 
