@@ -1,131 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="COVID-19 Vaccination System in India">
-        <title>COVID-19 Vaccination System - India</title>
-    
-        <!-- Include Font Awesome for social media icons -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    
-        <!-- Link to your CSS file -->
-        <link rel="stylesheet" href="styless.css">
-    </head>
-    
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Doctor Appointments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            background: url('https://source.unsplash.com/1600x900/?health,doctor') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #0d6efd;
+        }
+
+        body {
+            margin: 0;
+            /* font-family: Arial, sans-serif; */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #11263d;
+            padding: 12px 20px;
+            position: relative; z-index: 5;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            /* margin-left: auto; */
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 8px;
+
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            /* color: white; */
+            /* color: #11263d; */
+            color: #53c89b;
+            padding: 12px 18px;
+            transition: 0.3s;
+            border-radius: 5px;
+            /* background-color: #53c89b; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            min-width: 130px;
+            text-align: center;
+        }
+
+        .nav-links a:hover {
+            background-color: #575757;
+color: #fff;
+        }
+
+        .btn-lg {
+            background-color: #53c89b;
+            /* padding: 10px 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center; */
+            color:#11263d ;
+            border:none; 
+        }
+        .btn:hover {
+            background-color:  #575757;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            background-color: white;
+            height: 3px;
+            width: 28px;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #11263d;
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+                opacity: 0;
+                transform: translateY(-100%);
+                /* transition: transform 0.3s ease-in-out; */
+                transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+                pointer-events: none;
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+            .image-section{
+        display: none;
+        }
+        .text-section {
+            /* flex: 1; */
+            /* padding-right: 40px; */
+           justify-content: center;
+           align-items: center;
+           text-align: center;
+        }
+        }
+        .video-section {
+    position: relative;
+    width: 100%;
+    height: 90vh; 
+    overflow: hidden;
+}
+
+.bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 90vh;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background: rgba(0, 0, 0, 0.5);  */
+   
+    padding: 20px;
+}
+
+.video-overlay h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color:   #11263d;
+}
+
+.video-overlay p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    /* color:   #53c89b; */
+    color:   #11263d;
+}
+
+footer {
+    background-color: #11263d;
+    /* color: var(--accent-color); */
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 1em;
+}
+
+footer .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: left;
+  
+}
+
+footer .footer-container .footer-logo {
+    font-size: 1.6em;
+    font-weight: bold;
+    /* color: var(--accent-color); */
+    margin-bottom: 20px;
+}
+
+footer .footer-container .footer-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+footer .footer-container .footer-links li {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+footer .footer-container .footer-links li a {
+
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+footer .footer-container .footer-links li a:hover {
+    text-decoration: underline;
+    color: #53c89b; 
+}
+
+footer .footer-container .social-icons {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+footer .footer-container .social-icons a {
+    margin-right: 15px;
+    color: #fff;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+footer .footer-container .social-icons a:hover {
+    color:#53c89b; 
+}
+
+footer .footer-container .contact-info {
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+footer .footer-container .contact-info a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+footer .footer-container .contact-info a:hover {
+    color: #53c89b; 
+}
+.containers {
+            display: flex;
+            max-width: 1000px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            gap: 40px;
+            /* justify-content: space-evenly; */
+            /* align-items: center; */
+        }
+        .text-section {
+            flex: 1;
+            /* padding-right: 70px; */
+            padding-top:40px ;
+        }
+        .text-section h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #11263d;
+        }
+        .text-section strong {
+            font-size: 18px;
+            /* display: block; */
+            margin-bottom: 10px;
+            color: #11263d;
+        }
+        .text-section p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #11263d;
+        }
+        .text-section a {
+            color: #53c89b;
+            text-decoration: none;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #53c89b;
+            color: #53c89b;
+            /* text-decoration: none; */
+            border-radius: 25px;
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background: #53c89b;
+            color: white;
+        }
+        .image-section {
+            flex: 1;
+            /* padding-left: 10vw; */
+        }
+        .image-section img {
+            width: 130%;
+            height: 110%;
+            border-radius: 10px;
+        }
+        .containers2 {
+            display: flex;
+            max-width: 900px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
+            gap:70px;
+        }
+        .containers2 .image-section {
+            width: 50%;
+            /* padding-right: 50px; */
+        }
+        .containers2 .image-section img {
+            /* width: 100%;
+            height: 100%;
+            object-fit: cover; */
+            width: 110%;
+            height: 110%;
+            border-radius: 10px;
+        }
+        .containers2 .content {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .containers2 .content h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .containers2  .content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .containers2 .content button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #53c89b;
+            color: #53c89b;
+            /* text-decoration: none; */
+            border-radius: 25px;
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .containers2  .content button:hover {
+            background: #007BFF;
+            color: #fff;
+        }
+        @media (max-width: 768px) {
+            .containers2 {
+                flex-direction: column;
+            }
+            .containers2 .image-section, .content {
+                width: 100%;
+            }
+            .containers2 .content {
+                padding: 20px;
+                text-align: center;
+            }
+         .containers , .containers2 {
+                height: auto;
+                padding: 20px 10px;
+            
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
 <body>
-      
-    <!-- popover code -->
-    <!-- <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Disabled popover">
-        <button class="btn btn-primary" type="button" disabled>Disabled button</button>
-      </span> -->
-
-
-    <!-- Header Section -->
-
-    <header>
-        <div class="navbar">
-            <div class="logo">AASHA MedEase</div>
-            <!-- <div class="logoimage"><img src="logo aasha bg removed.png" width="47vw"></div> -->
-            <nav>
-                <ul>
-                    <li><a href="scheduling page.html">About</a></li>
-                    <li><a href="#register">Register</a></li>
-                    <li><a href="#info">Info</a></li>
-                    <li><a href="faq's.html">FAQ's</a></li>
-                    <li><a href="slotbooking.html">Slot</a></li>
-                </ul>
-            </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #11263d; padding: 12px 20px;">
+        <div class="logo">AASHA MedEase</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </header>
- 
-
-    <!-- Hero Section (Background Image) -->
-    <section id="hero">
-        <div class="hero-content">
-            <h1>"Revolutionizing Healthcare, Inspiring Hope, Always."</h1>
-            <p>Optimizing Doctor Availability and Appointment Allocation in Hospitals.</p>
-            <a href="#register" class="cta-btn">Join Us</a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about" class="btn">About Us</a></li>
+            <li><a href="#contact" class="btn">Contact Us</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Services
+                </a>
+                <ul class=dropdown-menu btn aria-labelledby="servicesDropdown">
+                    <li><a class="dropdown-item" href="#appointment">Request Appointment</a></li>
+                    
+                    <li><a class="dropdown-item" href="faq's.html">FAQs</a></li>
+                </ul>
+            </li>
+            <li> <a href="{% url 'login' %}" class="btn btn-light btn-lg" style="color: #11263d ;">Login</a></li>
+            <li><a href="{% url 'signupask' %}" class="btn btn-primary btn-lg" style="color: #11263d ;">Sign Up</a></li>
+           
+        </ul>
+    </nav>
+    <section class="video-section">
+        <video autoplay loop muted playsinline class="bg-video">
+            <source src="vid3aasha.mp4" type="video/mp4">
+           lol.
+        </video>
+        <div class="video-overlay">
+            <h1>Welcome to Virtual Doctor Appointments</h1>
+            <p>Your health, our priority.</p>
         </div>
     </section>
+    <!-- Welcome Statement -->
+    <!-- <section class="container my-4 text-center">
+        <h2>Welcome to Virtual Doctor Appointments</h2>
+        <p>Connecting you with top doctors for hassle-free online consultations.</p>
+    </section> -->
+
+    <!-- Hero Section -->
+    <!-- <header class="hero">
+        <h1>Book Appointments with Top Doctors Anytime, Anywhere!</h1>
+        <p>Your health, our priority. AI-powered scheduling & real-time availability.</p>
+
+
+
+
+    </header> -->
 
     <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About AASHA MedEase</h2>
-            <p>Aasha Medease is a beacon of hope for those seeking medical care. Our platform aims to provide accessible and affordable healthcare solutions, bridging the gap between patients and medical professionals. With Aasha Medease, we envision a future where everyone has the opportunity to receive quality medical attention, regardless of their geographical location or financial constraints. Our mission is to empower individuals to take control of their health, and our team is dedicated to making this vision a reality.</p>
-            <img src="logo aasha bg removed.png" alt="aasha">
+    <section class="container my-5 text-center About">
+        <!-- <h2>About Our Platform</h2>
+        <p>Experience hassle-free doctor appointments with AI-powered prioritization and real-time tracking.</p> -->
+        <div class="containers">
+            <div class="text-section">
+                <h1>Healing starts here</h1>
+                <strong>The right answers the first time</strong>
+                <p>Effective treatment depends on getting the right diagnosis. Our experts diagnose and treat the toughest medical challenges.</p>
+                <strong>Top-ranked in the India</strong>
+                <p>AASHA MedEase has more No. 1 rankings than any other hospital in the nation according to IND. News & World Report.
+                     <!-- <a href="#">Learn more about our top-ranked specialties.</a> -->
+
+                    </p>
+                <a href="#" class="button">Why Choose US</a>
+            </div>
+            <div class="image-section">
+                <img src="imgiconaasha.jpg" alt="Doctor with patient">
+            </div>
         </div>
     </section>
 
-    <!-- Registration Section -->
-    <section id="register">
-        <div class="container">
-            <h2>Register Today! And Join with Us</h2>
-            <form action="#">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="age">Age</label>
-                <input type="number" id="age" name="age" required>
-
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" required>
-
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
+    <!-- Why Choose Us Section -->
+    <section class="container my-5">
+        <div class="containers2">
+            <div class="image-section">
+                <img src="icon2aasha.jpg"Doctor">
+            </div>
+            <div class="content">
+                <h2>AI-driven Healthcare Efficiency</h2>
+                <p>AASHA Medease ensures reduced patient waiting times with cutting-edge AI solutions, making healthcare seamless and efficient.</p>
+                <button onclick="learnMore()">Explore Solutions</button>
+                <!-- niche script me link h change krne ko -->
+            </div>
         </div>
     </section>
 
-    <!-- Info Section -->
-<section id="info">
-    <h2>WHY US ? WHY Only AASHA MedEase ?</h2>
-    <p>Here are some key features which make us the best and your true health partner:</p>
+    <!-- How It Works Section -->
+    <!-- <section class="container my-5 text-center">
+        <h2>How It Works</h2>
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <h5>1. Sign Up</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>2. Choose Doctor</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>3. Book Appointment</h5>
+            </div>
+            <div class="col-md-3">
+                <h5>4. Join Consultation</h5>
+            </div>
+        </div>
+    </section>  -->
+
+    <!-- Testimonials Section -->
+    <!-- <section class="container my-5 text-center">
+        <h2>What Our Users Say</h2>
+        <p>"This platform has made booking doctor appointments so much easier! Highly recommend." - Jane Doe</p>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="text-light py-4" style="background-color: #11263d;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-3">
+                    <h4>AASHA MedEase</h4>
+                    <p>Your trusted virtual healthcare partner, bringing AI-powered solutions for hassle-free appointments and consultations.</p>
+                </div>
+                <div class="col-lg-2 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#about" class="text-light">About Us</a></li>
+                        <li><a href="#services" class="text-light">Services</a></li>
+                        <li><a href="#contact" class="text-light">Contact</a></li>
+                        <li><a href="#faq" class="text-light">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-3">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#blog" class="text-light">Blog</a></li>
+                        <li><a href="#support" class="text-light">Support</a></li>
+                        <li><a href="#privacy" class="text-light">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <h5>Join Us Now!</h5>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                            <button class="btn btn-success" type="submit">Login</button>
+                        </div>
+                    </form>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-light me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>&copy; 2025 AASHA MedEase | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
     
-    <ul>
-        <li>Optimizing Doctor Availability and Appointment Allocation in Hospitals through Digital Technology and AI Integration</li>
-        <li>Virtual Queue Management will digitize patient flow and appointment handling, reducing wait times and improving efficiency.</li>
-        <li>AI appointment scheduling boosts efficiency, reduces errors, and personalizes the experience, making it faster and more convenient.</li>
-        <li>Pre-diagnosis chatbots improve healthcare access, save time, and provide initial guidance, prioritizing urgent cases while handling non-urgent needs.</li>
-        <li>Real-Time Doctor Availability Tracking informs patients and providers, enabling faster service and enhancing patient satisfaction.</li>
-    </ul>
-</section>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Footer Section -->
-<footer>
-    <div class="footer-container">
-        <!-- Logo or Website Name -->
-        <div class="footer-logo">
-          AASHA MedEase
-        </div>
+    <script>
+        const mobileMenu = document.getElementById("mobile-menu");
+        const navLinks = document.getElementById("nav-links");
 
-        <!-- Footer Links -->
-
-        <!-- Social Media Icons -->
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-
-        <!-- Contact Information -->
-        <div class="contact-info">
-            <p>For inquiries: <a href="mailto:info@vaccinationindia.com">info@aashamedeaseindia.com</a></p>
-        </div>
-    </div>
-
-    <!-- Copyright Section -->
-    <div class="copyright">
-        &copy; 2025 AASHA MedEase All Rights Reserved.
-    </div>
-</footer>
-
+        mobileMenu.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+     <script>
+        function learnMore() {
+            window.location.href = "#"; // Update with actual link
+        }
+    </script>
 
 </body>
+
 </html>
