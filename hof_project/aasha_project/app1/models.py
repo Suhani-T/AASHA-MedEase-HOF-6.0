@@ -7,11 +7,23 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     is_doctor = models.BooleanField(default=False)
     is_patient = models.BooleanField(default=False)
+
+    GENDER_CHOICES = [
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+    ('Other', 'Other'),
+]
+
+CONSULTATION_MODE_CHOICES = [
+    ('in_person', 'In-Person'),
+    ('video_call', 'Video Call'),
+    ('phone_call', 'Phone Call'),
+]
    
 class Doctor(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='doctor_profile')
     full_name = models.CharField(max_length=100)
-    email = models.EmailField()
+   
     phone = models.CharField(max_length=15)
     dob = models.DateField()
     gender = models.CharField(max_length=10)
@@ -21,7 +33,7 @@ class Doctor(models.Model):
     workplace = models.CharField(max_length=200)
     address = models.TextField()
     consultation_mode = models.CharField(max_length=50)
-    available_days = models.CharField(max_length=200)
+    available_days = models.JSONField(default=list) 
     start_time = models.TimeField()
     end_time = models.TimeField()
     max_patients = models.IntegerField()
@@ -36,7 +48,7 @@ class Doctor(models.Model):
 class Patient(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='patient_profile')
     full_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    
     phone = models.CharField(max_length=15)
     dob = models.DateField()
     gender = models.CharField(max_length=10)
@@ -62,3 +74,14 @@ class Patient(models.Model):
         return self.full_name
 
 
+class Appointment(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
+    reason = models.TextField()
+    date = models.DateField()
+    time = models.TimeField(null=True, blank=True)
+    mode = models.CharField(max_length=10, choices=CONSULTATION_MODE_CHOICES)
+    is_completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Appointment with Dr. {self.doctor.full_name} on {self.date} at {self.time}"
