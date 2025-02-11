@@ -95,6 +95,9 @@ def patient_registration(request):
         phone = request.POST.get('phone')
         dob = request.POST.get('dob')
         gender = request.POST.get('gender')
+        city=request.POST.get('city')
+        state=request.POST.get('state')
+        pin_code=request.POST.get('pin_code')
         address = f"{request.POST.get('address')}, {request.POST.get('city')}, {request.POST.get('state')} - {request.POST.get('pin_code')}"
         emergency_contact = request.POST.get('emergency_contact')
 
@@ -141,6 +144,7 @@ def patient_registration(request):
        
         Patient.objects.create(
             user=user, full_name=full_name, phone=phone, dob=dob, gender=gender,
+            city=city,state=state,pin_code=pin_code,
             address=address, emergency_contact=emergency_contact,
             blood_group=blood_group, pre_existing_conditions=pre_existing_conditions,
             current_medications=current_medications, allergies=allergies,
