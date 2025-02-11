@@ -8,6 +8,10 @@ class CustomUser(AbstractUser):
     is_doctor = models.BooleanField(default=False)
     is_patient = models.BooleanField(default=False)
 
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='profile_pics/default.jpg')
+    def __str__(self):
+        return self.username
+
     GENDER_CHOICES = [
     ('Male', 'Male'),
     ('Female', 'Female'),
@@ -40,6 +44,7 @@ class Doctor(models.Model):
     medical_degree = models.FileField(upload_to='doctor_documents/')
     government_id = models.FileField(upload_to='doctor_documents/')
     medical_license = models.FileField(upload_to='doctor_documents/')
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
 
     def __str__(self):
         return self.full_name
@@ -65,7 +70,7 @@ class Patient(models.Model):
     insurance_provider = models.CharField(max_length=100, blank=True)
     policy_number = models.CharField(max_length=50, blank=True)
     coverage_type = models.CharField(max_length=50, blank=True)
-    profile_picture = models.ImageField(upload_to='patient_images/', blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     bio = models.TextField(blank=True)
     languages_spoken = models.CharField(max_length=100)
     consultation_mode = models.CharField(max_length=50)

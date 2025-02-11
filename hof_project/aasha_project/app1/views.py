@@ -49,6 +49,7 @@ def doctor_registration(request):
         medical_degree = request.FILES.get('medical_degree')
         government_id = request.FILES.get('government_id')
         medical_license = request.FILES.get('medical_license')
+        profile_picture=request.FILES.get('profile_picture')
 
         # Login Credentials
         username = request.POST.get('username')
@@ -76,7 +77,8 @@ def doctor_registration(request):
             experience=experience, workplace=workplace, address=address,
             consultation_mode=consultation_mode, available_days=available_days,
             start_time=start_time, end_time=end_time, max_patients=max_patients,
-            medical_degree=medical_degree, government_id=government_id, medical_license=medical_license
+            medical_degree=medical_degree, government_id=government_id, medical_license=medical_license,
+            profile_picture=profile_picture
         )
 
         return redirect('login')
@@ -105,6 +107,7 @@ def patient_registration(request):
         insurance_provider = request.POST.get('insurance_provider')
         policy_number = request.POST.get('policy_number')
         coverage_type = request.POST.get('coverage_type')
+        profile_picture=request.FILES.get('profile_picture')
 
         # Login Credentials
         username = request.POST.get('username')
@@ -143,7 +146,7 @@ def patient_registration(request):
             current_medications=current_medications, allergies=allergies,
             preferred_doctor=preferred_doctor, insurance_provider=insurance_provider,
             policy_number=policy_number, coverage_type=coverage_type,
-            profile_picture=request.FILES.get('profile_picture'),
+            profile_picture=profile_picture,
             bio=request.POST.get('short_bio'), languages_spoken=request.POST.get('languages_spoken'),
             consultation_mode=request.POST.get('preferred_consultation_mode')
         )
@@ -380,3 +383,44 @@ def mark_appointment_completed(request, appointment_id):
     appointment.save()
 
     return JsonResponse({'success': True, 'completed': appointment.is_completed})
+
+@login_required
+def book_appointment(request):
+    if request.method == "POST":
+        doctor_name = request.POST.get("doctor_name")
+        doctor = None
+
+        # Prevent past date selection
+        appointment_date = request.POST.get("date")
+        if appointment_date < str(timezone.now().date()):  # Compare as string to match format
+            messages.error(request, "Cannot book an appointment for a past date.")
+            return redirect(request.META.get('HTTP_REFERER', 'pat_dashboard'))
+
+        # Check if doctor exists in DB
+        try:
+            doctor = Doctor.objects.get(full_name__iexact=doctor_name)  # Strict match
+        except Doctor.DoesNotExist:
+            doctor = Doctor.objects.create(full_name=doctor_name)  # Create new if not found
+
+        # Create the appointment
+        appointment = Appointment.objects.create(
+            patient=request.user.patient_profile,
+            doctor=doctor,
+            reason=request.POST.get("reason"),
+            date=appointment_date,
+            mode=request.POST.get("mode")
+        )
+
+        # Redirect back to previous page
+        return redirect(request.META.get('HTTP_REFERER', 'pat_dashboard'))
+
+    return redirect("pat_dashboard")
+
+
+def patient_profile_actual(request, pk):
+    patient = get_object_or_404(Patient, pk=pk)
+    return render(request, 'patient_profile.html', {'patient': patient})
+
+def doctor_profile_actual(request, pk):
+    doctor = get_object_or_404(Doctor, pk=pk)
+    return render(request, 'doctor_profile.html', {'doctor': doctor})

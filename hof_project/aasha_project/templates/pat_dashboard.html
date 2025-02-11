@@ -40,18 +40,24 @@
             margin-top: 30px;
             border-top: 1px solid #ddd;
         }
-        .profile-pic {
-        width: 100px;
-        height: 100px;
+        /* for actual image */
+        #profile-pic img {
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #007bff;
         }
+        #profile-pic img:hover{
+            cursor: pointer;
+        }
 
+        /* for general icon */
         #profile_picture {
             width: 50px;
             height: 50px;
             border-radius: 50%;
+            object-fit: cover;
             background-color: #ddd;
             display: flex;
             align-items: center;
@@ -87,9 +93,15 @@
                 <!-- Profile Icon -->
                 <li class="nav-item ms-3">
                     <a href="{% url 'patient_profile_actual' request.user.patient_profile.pk %}">
-                        <div id="profile_picture">
-                            <i class="fas fa-user"></i> <!-- User Icon -->
-                        </div>
+                        {% if user.patient_profile.profile_picture %}
+                            <div id="profile-pic">
+                                <img src="{{ user.patient_profile.profile_picture.url }}" alt="Profile Picture">
+                            </div>
+                        {% else %}
+                            <div id="profile_picture">
+                                <i class="fas fa-user"></i> <!-- User Icon -->
+                            </div>
+                        {% endif %}
                     </a>
                 </li>
             </ul>
@@ -101,7 +113,7 @@
         <div class="sidebar">
             <h5>Patient Dashboard</h5>
             <ul class="list-group">
-                <li class="list-group-item"><a href="{% 'patient_profile' %}">My Profile</a></li>
+                <li class="list-group-item"><a href="{% url 'patient_profile' %}">My Profile</a></li>
                 <li class="list-group-item"><a href="#">Appointment History</a></li>
                 <li class="list-group-item"><a href="#">Settings</a></li>
                 <li class="list-group-item"><a href="#">Help</a></li>

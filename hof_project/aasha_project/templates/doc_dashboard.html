@@ -52,17 +52,24 @@
             text-align: center;
             vertical-align: middle;
         }
-        .profile-pic {
-        width: 100px;
-        height: 100px;
+        /* for actual image */
+        #profile-pic img {
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #007bff;
         }
+        #profile-pic img:hover{
+            cursor: pointer;
+        }
+
+        /* for general icon */
         #profile_picture {
             width: 50px;
             height: 50px;
             border-radius: 50%;
+            object-fit: cover;
             background-color: #ddd;
             display: flex;
             align-items: center;
@@ -76,6 +83,7 @@
             background-color: #bbb;
             cursor: pointer;
         }
+        
     </style>
 </head>
 <body>
@@ -96,9 +104,20 @@
                 </li>
                 <!-- Profile Icon -->
                 <li class="nav-item ms-3">
-                    <div id="profile_picture">
-                        <i class="fas fa-user"></i> <!-- User Icon -->
-                    </div>
+                    <a href="{% url 'doctor_profile_actual' request.user.doctor_profile.pk %}">
+                        <!-- <div id="profile_picture">
+                            <i class="fas fa-user"></i> <!-- User Icon -->
+                        <!-- </div> -->
+                        {% if user.doctor_profile.profile_picture %}
+                            <div id="profile-pic">
+                                <img src="{{ user.doctor_profile.profile_picture.url }}" alt="Profile Picture">
+                            </div>
+                        {% else %}
+                            <div id="profile_picture">
+                                <i class="fas fa-user"></i> <!-- User Icon -->
+                            </div>
+                        {% endif %}
+                    </a>
                 </li>
             </ul>
         </div>

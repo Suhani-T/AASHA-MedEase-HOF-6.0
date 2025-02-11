@@ -22,6 +22,9 @@ from app1.views import search_doctors
 from app1.views import doctor_profile
 from app1.views import logout_view
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -68,7 +71,7 @@ urlpatterns = [
 
     path('mark_appointment_completed/<int:appointment_id>/', views.mark_appointment_completed, name='mark_appointment_completed'),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

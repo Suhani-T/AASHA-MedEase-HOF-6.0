@@ -32,6 +32,24 @@
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 15px;
         }
+        #profile-pic img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #007bff;
+        }
+        #profile-pic img:hover{
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }   
         .icon {
             font-size: 1.5rem;
             color: #198754;
@@ -43,7 +61,18 @@
 <div class="container mt-5">
     <div class="profile-card">
         <div class="profile-header mb-4">
-            <i class="bi bi-person-circle profile-icon"></i>
+            <a href="{% url 'doctor_profile' doctor.id %}">
+                {% if doctor.profile_picture %}
+                    <div id="profile-pic">
+                        <img src="{{ doctor.profile_picture.url }}" alt="Profile Picture">
+                    </div>
+                {% else %}
+                    <div id="profile-icon">
+                        <!-- <i class="fas fa-user"></i> User Icon -->
+                        <i class="bi bi-person-circle profile-icon"></i>
+                    </div>
+                {% endif %}
+            </a>
             <div>
                 <h2 class="fw-bold">{{ doctor.full_name }}</h2>
             </div>
