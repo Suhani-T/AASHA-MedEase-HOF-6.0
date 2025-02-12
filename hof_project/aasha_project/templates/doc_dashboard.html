@@ -107,7 +107,7 @@
                 <li class="nav-item ms-3">
                     <a href="{% url 'doctor_profile_actual' request.user.doctor_profile.pk %}">
                         <!-- <div id="profile_picture">
-                            <i class="fas fa-user"></i> <!-- User Icon -->
+                            <i class="fas fa-user"></i>User Icon -->
                         <!-- </div> -->
                         {% if user.doctor_profile.profile_picture %}
                             <div id="profile-pic">
@@ -221,41 +221,56 @@
         </ul>
     </footer>
 
-
     <script>
 
         function updatePatientCount() {
-            let remainingPatients = document.querySelectorAll('.checkbox-center:not(:checked)').length;
-            document.getElementById('patients-count').innerText = remainingPatients;
-        }
-
-        document.querySelectorAll('.checkbox-center').forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                const appointmentId = this.getAttribute('data-appointment-id');
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        
-                fetch(`/mark_appointment_completed/${appointmentId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': csrfToken, // Fetch CSRF dynamically
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ is_completed: this.checked })
-                }).then(response => response.json())
-                .then(data => {
-                    if (!data.success) {
-                        alert('Error updating appointment status.');
-                        this.checked = !this.checked; // Revert checkbox
-                    } else {
-                        updatePatientCount(); // Update patient count dynamically
-                    }
-                })
-                .catch(error => {
-                    alert('Something went wrong.');
-                    this.checked = !this.checked; // Revert checkbox
-                });
-            });
-        });
-    </script>
+           let remainingPatients = document.querySelectorAll('.checkbox-center:not(:checked)').length;
+           document.getElementById('patients-count').innerText = remainingPatients;
+       }
+       
+       document.querySelectorAll('.checkbox-center').forEach(checkbox => {
+           checkbox.addEventListener('change', function () {
+               const appointmentId = this.getAttribute('data-appointment-id');
+               const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+       
+               fetch(`/mark_appointment_completed/${appointmentId}/`, {
+                   method: 'POST',
+                   headers: {
+                       'X-CSRFToken': csrfToken,
+                       'Content-Type': 'application/json'
+                   },
+                   body: JSON.stringify({ is_completed: this.checked })
+               })
+               .then(response => response.json())
+               .then(data => {
+                   if (!data.success) {
+                       alert('Error updating appointment status.');
+                       this.checked = !this.checked;
+                   } else {
+                       updatePatientCount();
+                       updateQueuePosition();  
+                   }
+               })
+               .catch(error => {
+                   alert('Something went wrong.');
+                   this.checked = !this.checked;
+               });
+           });
+       });
+       
+       function updateQueuePosition() {
+           fetch(`/patient/dashboard/`)
+               .then(response => response.text())
+               .then(html => {
+                   let parser = new DOMParser();
+                   let doc = parser.parseFromString(html, "text/html");
+                   let newQueuePosition = doc.getElementById("queue_position").innerText;
+                   document.getElementById("queue_position").innerText = newQueuePosition;
+               })
+               .catch(error => console.error("Error updating queue position:", error));
+       }
+       
+   </script>
+    
 </body>
 </html>
