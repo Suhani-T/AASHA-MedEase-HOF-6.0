@@ -52,7 +52,7 @@
 <div class="container mt-5">
     <div class="profile-card">
         <div class="profile-header mb-4">
-            <a href="{% url 'patient_profile_actual' request.user.patient_profile.pk %}">
+            <a href="{% url 'patient_profile' patient.id %}">
                 {% if user.patient_profile.profile_picture %}
                     <div id="profile-pic">
                         <img src="{{ user.patient_profile.profile_picture.url }}" alt="Profile Picture">

@@ -333,60 +333,10 @@ def book_appointment(request):
 
     return redirect("pat_dashboard")
 
-@login_required
-def patient_dashboard(request):
-    """Fetch the current appointment and upcoming appointments for the logged-in patient."""
-    patient = request.user.patient_profile  
-    today = timezone.now().date()
-
-    
-    current_appointment = Appointment.objects.filter(
-        patient=patient,
-        date=today,
-        is_completed=False
-    ).order_by('id').first()  
-
-    
-    queue_position = None
-    if current_appointment:
-        
-
-        queue_position = Appointment.objects.filter(
-            doctor=current_appointment.doctor,
-            date=today,
-            
-            id__lt=current_appointment.id  
-        ).count()
-
-    
-    upcoming_appointments = Appointment.objects.filter(
-        patient=patient,
-        is_completed=False,
-        date__gt=today
-    ).order_by('date', 'id')  
-
-    return render(request, 'pat_dashboard.html', {
-        'current_appointment': current_appointment,
-        'upcoming_appointments': upcoming_appointments,
-        'queue_position': queue_position 
-    })
 
 
-@csrf_protect
-@require_POST
-@login_required
-def mark_appointment_completed(request, appointment_id):
-    
-    appointment = get_object_or_404(Appointment, id=appointment_id)
 
-    if request.user != appointment.doctor.user:
-        return JsonResponse({'error': 'Unauthorized'}, status=403)
 
-    data = json.loads(request.body)
-    appointment.is_completed = data.get('is_completed', False)
-    appointment.save()
-
-    return JsonResponse({'success': True, 'completed': appointment.is_completed})
 
 @login_required
 def book_appointment(request):
@@ -394,19 +344,18 @@ def book_appointment(request):
         doctor_name = request.POST.get("doctor_name")
         doctor = None
 
-        # Prevent past date selection
+
         appointment_date = request.POST.get("date")
-        if appointment_date < str(timezone.now().date()):  # Compare as string to match format
+        if appointment_date < str(timezone.now().date()): 
             messages.error(request, "Cannot book an appointment for a past date.")
             return redirect(request.META.get('HTTP_REFERER', 'pat_dashboard'))
 
-        # Check if doctor exists in DB
+       
         try:
-            doctor = Doctor.objects.get(full_name__iexact=doctor_name)  # Strict match
+            doctor = Doctor.objects.get(full_name__iexact=doctor_name)  
         except Doctor.DoesNotExist:
-            doctor = Doctor.objects.create(full_name=doctor_name)  # Create new if not found
-
-        # Create the appointment
+            doctor = Doctor.objects.create(full_name=doctor_name)
+       
         appointment = Appointment.objects.create(
             patient=request.user.patient_profile,
             doctor=doctor,
@@ -415,7 +364,7 @@ def book_appointment(request):
             mode=request.POST.get("mode")
         )
 
-        # Redirect back to previous page
+      
         return redirect(request.META.get('HTTP_REFERER', 'pat_dashboard'))
 
     return redirect("pat_dashboard")
@@ -428,3 +377,58 @@ def patient_profile_actual(request, pk):
 def doctor_profile_actual(request, pk):
     doctor = get_object_or_404(Doctor, pk=pk)
     return render(request, 'doctor_profile.html', {'doctor': doctor})
+
+
+
+@login_required
+def patient_dashboard(request):
+    """Fetch the current appointment and queue position for the logged-in patient."""
+    patient = request.user.patient_profile
+    today = timezone.now().date()
+
+   
+    current_appointment = Appointment.objects.filter(
+        patient=patient,
+        date=today,
+        is_completed=False
+    ).order_by('id').first()
+
+    queue_position = None
+    if current_appointment:
+      
+        queue_position = Appointment.objects.filter(
+            doctor=current_appointment.doctor,
+            date=today,
+            is_completed=False,
+            id__lt=current_appointment.id 
+        ).count()
+
+
+    upcoming_appointments = Appointment.objects.filter(
+        patient=patient,
+        is_completed=False,
+        date__gt=today
+    ).order_by('date', 'id')
+
+    return render(request, 'pat_dashboard.html', {
+        'current_appointment': current_appointment,
+        'upcoming_appointments': upcoming_appointments,
+        'queue_position': queue_position
+    })
+
+
+@csrf_protect
+@require_POST
+@login_required
+def mark_appointment_completed(request, appointment_id):
+   
+    appointment = get_object_or_404(Appointment, id=appointment_id)
+
+    if request.user != appointment.doctor.user:
+        return JsonResponse({'error': 'Unauthorized'}, status=403)
+
+    data = json.loads(request.body)
+    appointment.is_completed = data.get('is_completed', False)
+    appointment.save()
+
+    return JsonResponse({'success': True, 'completed': appointment.is_completed})
