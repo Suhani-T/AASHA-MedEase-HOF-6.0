@@ -432,12 +432,6 @@ def patient_dashboard(request):
 
     if current_appointment:
         # Count the number of patients ahead in the queue
-        # queue_position = Appointment.objects.filter(
-        #     doctor=current_appointment.doctor,
-        #     date=today,
-        #     id__lt=current_appointment.id
-        # ).count()
-        
         queue_position = Appointment.objects.filter(
             doctor=current_appointment.doctor,
             date=today,
@@ -445,7 +439,9 @@ def patient_dashboard(request):
             is_completed=False
         ).order_by('id').count()
 
-        if current_appointment.doctor:
+        if queue_position == 0:
+            predicted_time = "It's your turn!"
+        elif current_appointment.doctor:
             specialization = current_appointment.doctor.specialization
 
             try:
@@ -457,7 +453,6 @@ def patient_dashboard(request):
                     features = [[specialization_encoded, queue_position, avg_time_per_checkup]]
 
                     # Predict waiting time with all features
-                    # predicted_time = waiting_time_model.predict(features)[0]
                     predicted_time = round(waiting_time_model.predict(features)[0])
 
                 else:
@@ -472,6 +467,7 @@ def patient_dashboard(request):
         'queue_position': queue_position,
         'predicted_time': predicted_time
     })
+
 
 @csrf_protect
 @require_POST

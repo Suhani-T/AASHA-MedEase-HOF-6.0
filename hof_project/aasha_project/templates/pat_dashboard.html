@@ -191,7 +191,11 @@
                     {% if current_appointment %}
                         {% if queue_position is not None %}
                             <p><strong>Number of patients ahead:</strong> {{ queue_position }}</p>
-                            <p><strong>Predicted Waiting Time:</strong> {{ predicted_time }} minutes</p>
+                            {% if predicted_time == "It's your turn!" %}
+                                <p class="alert alert-success">{{ predicted_time }}</p>
+                            {% else %}
+                                <p>Estimated Waiting Time: {{ predicted_time }} minutes</p>
+                            {% endif %}
                         {% else %}
                             <p>You are next in line!</p>
                         {% endif %}
