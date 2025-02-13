@@ -17,6 +17,16 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 
+import os
+import joblib 
+from django.conf import settings
+
+MODEL_PATH = os.path.join(settings.BASE_DIR, 'ml_models', 'wait_time_model.joblib')
+ENCODER_PATH = os.path.join(settings.BASE_DIR, 'ml_models', 'spec_encoder.joblib')
+
+waiting_time_model = joblib.load(MODEL_PATH)
+spec_encoder = joblib.load(ENCODER_PATH)
+
 CustomUser = get_user_model()
 
 
@@ -382,40 +392,86 @@ def doctor_profile_actual(request, pk):
 
 @login_required
 def patient_dashboard(request):
-    """Fetch the current appointment and queue position for the logged-in patient."""
-    patient = request.user.patient_profile
+    """Fetch the current appointment, upcoming appointments, and predicted waiting time for the logged-in patient."""
+    patient = request.user.patient_profile  # Get the logged-in patient
     today = timezone.now().date()
 
-   
+    # Define specializations and their average checkup times
+    specialisations = {
+        "ENT": 15, "Optical": 10,
+        "Cardiology": 25, "Orthopedics": 30, 
+        "Pediatrics": 20, "Neurology": 35,
+        "Dermatology": 15, "Gastroenterology": 25,
+        "Oncology": 40, "Psychiatry": 45,
+        "Gynecology": 20, "Dentistry": 15,
+        "Urology": 30, "Endocrinology": 25,
+        "Ophthalmology": 10, "Rheumatology": 30,
+        "Pulmonology": 20, "Nephrology": 30,
+        "Hematology": 35, "Infectious Disease": 25,
+        "Plastic Surgery": 60, "Anesthesiology": 20,
+        "Emergency Medicine": 10, "Pathology": 15, 
+        "Radiology": 20, "Palliative Care": 30
+    }
+
+    # Get the current appointment for today (if any)
     current_appointment = Appointment.objects.filter(
         patient=patient,
         date=today,
         is_completed=False
     ).order_by('id').first()
 
+    # Get upcoming appointments (appointments scheduled after today)
+    upcoming_appointments = Appointment.objects.filter(
+        patient=patient,
+        date__gt=today,
+    ).order_by('date', 'id')
+
+    # Initialize values
     queue_position = None
+    predicted_time = None
+
     if current_appointment:
-      
+        # Count the number of patients ahead in the queue
+        # queue_position = Appointment.objects.filter(
+        #     doctor=current_appointment.doctor,
+        #     date=today,
+        #     id__lt=current_appointment.id
+        # ).count()
+        
         queue_position = Appointment.objects.filter(
             doctor=current_appointment.doctor,
             date=today,
-            is_completed=False,
-            id__lt=current_appointment.id 
-        ).count()
+            id__lt=current_appointment.id,
+            is_completed=False
+        ).order_by('id').count()
 
+        if current_appointment.doctor:
+            specialization = current_appointment.doctor.specialization
 
-    upcoming_appointments = Appointment.objects.filter(
-        patient=patient,
-        is_completed=False,
-        date__gt=today
-    ).order_by('date', 'id')
+            try:
+                specialization_encoded = spec_encoder.transform([specialization])[0]
+
+                # Ensure specialization exists in the dictionary before accessing
+                if specialization in specialisations:
+                    avg_time_per_checkup = specialisations[specialization]
+                    features = [[specialization_encoded, queue_position, avg_time_per_checkup]]
+
+                    # Predict waiting time with all features
+                    # predicted_time = waiting_time_model.predict(features)[0]
+                    predicted_time = round(waiting_time_model.predict(features)[0])
+
+                else:
+                    print(f"Warning: Specialization '{specialization}' not found in dictionary.")
+
+            except Exception as e:
+                print(f"Error in specialization encoding or prediction: {e}")
 
     return render(request, 'pat_dashboard.html', {
         'current_appointment': current_appointment,
         'upcoming_appointments': upcoming_appointments,
-        'queue_position': queue_position
+        'queue_position': queue_position,
+        'predicted_time': predicted_time
     })
-
 
 @csrf_protect
 @require_POST
