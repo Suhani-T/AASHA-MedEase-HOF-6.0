@@ -12,6 +12,26 @@
         body {
             background: linear-gradient(135deg, #87d8b9, #245081);
         }
+        .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px; /* Adjust height for uniformity */
+    text-align: center;
+    width: 100%;
+}
+
+.col-md-6 {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
 
         .profile-card {
             background: #fff;
@@ -148,83 +168,84 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="info-box">
-                        <strong>Full Name:</strong> {{ patient.full_name }}
+                        <strong>Full Name : </strong> {{ patient.full_name }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="info-box">
-                        <strong>Email:</strong> {{ patient.user.email }}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="info-box">
-                        <strong>Phone:</strong> {{ patient.phone }}
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="info-box">
-                        <strong>Date of Birth:</strong> {{ patient.dob }}
+                        <strong>Email : </strong> {{ patient.user.email }}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="info-box">
-                        <strong>Gender:</strong> {{ patient.gender }}
+                        <strong>Phone : </strong> {{ patient.phone }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="info-box">
-                        <strong>Address:</strong> {{ patient.address }}, {{ patient.city }}, {{ patient.state }}, {{ patient.pin_code }}
+                        <strong>Date of Birth : </strong> {{ patient.dob }}
+                    </div>
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <strong>Gender :</strong> {{ patient.gender }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box">
+                        <strong>Emergency Contact :</strong> {{ patient.emergency_contact }}
                     </div>
                 </div>
             </div>
             <div class="info-box">
-                <strong>Emergency Contact:</strong> {{ patient.emergency_contact }}
+                <strong>Address :</strong> {{ patient.address }}, {{ patient.city }}, {{ patient.state }}, {{ patient.pin_code }}
             </div>
+           
 
             <!-- Health Information -->
             <h5>Health Information</h5>
             <div class="info-box">
-                <strong>Blood Group:</strong> {{ patient.blood_group }}
+                <strong>Blood Group :</strong> {{ patient.blood_group }}
             </div>
             <div class="info-box">
-                <strong>Pre-existing Conditions:</strong> {{ patient.pre_existing_conditions }}
+                <strong>Pre-existing Conditions :</strong> {{ patient.pre_existing_conditions }}
             </div>
             <div class="info-box">
-                <strong>Current Medications:</strong> {{ patient.current_medications }}
+                <strong>Current Medications :</strong> {{ patient.current_medications }}
             </div>
             <div class="info-box">
-                <strong>Allergies:</strong> {{ patient.allergies }}
+                <strong>Allergies :</strong> {{ patient.allergies }}
             </div>
             <div class="info-box">
-                <strong>Preferred Doctor:</strong> {{ patient.preferred_doctor }}
+                <strong>Preferred Doctor :</strong> {{ patient.preferred_doctor }}
             </div>
 
             <!-- Insurance Details -->
             <h5>Insurance Details (Optional)</h5>
             <div class="info-box">
-                <strong>Insurance Provider:</strong> {{ patient.insurance_provider }}
+                <strong>Insurance Provider :</strong> {{ patient.insurance_provider }}
             </div>
             <div class="info-box">
-                <strong>Policy Number:</strong> {{ patient.policy_number }}
+                <strong>Policy Number :</strong> {{ patient.policy_number }}
             </div>
             <div class="info-box">
-                <strong>Coverage Type:</strong> {{ patient.coverage_type }}
+                <strong>Coverage Type :</strong> {{ patient.coverage_type }}
             </div>
 
             <!-- Additional Information -->
             <h5>Additional Information (Optional)</h5>
             <div class="info-box">
-                <strong>Short Bio:</strong> {{ patient.bio }}
+                <strong>Short Bio :</strong> {{ patient.bio }}
             </div>
             <div class="info-box">
-                <strong>Languages Spoken:</strong> {{ patient.languages_spoken }}
+                <strong>Languages Spoken :</strong> {{ patient.languages_spoken }}
             </div>
             <div class="info-box">
-                <strong>Preferred Consultation Mode:</strong> {{ patient.consultation_mode }}
+                <strong>Preferred Consultation Mode :</strong> {{ patient.consultation_mode }}
             </div>
         </div>
     </div>
