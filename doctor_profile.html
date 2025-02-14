@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+          body {
+            background: linear-gradient(135deg, #87d8b9, #245081);
+        }
+        .profile-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .profile-icon {
+            font-size: 4rem;
+            color: #198754;
+        }
+        .info-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        #profile-pic img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #007bff;
+        }
+        #profile-pic img:hover{
+            cursor: pointer;
+        }
+
+        .info-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }   
+        .icon {
+            font-size: 1.5rem;
+            color: #198754;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 25px;
+            background: #11263d;
+            width: 100%;
+            left: 0;
+            margin-bottom: 10px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            border-radius: 50%;
+        }
+        .brand-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+        .brandsubname {
+            color:#53c89b;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 20px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a:hover {
+            color: #53c89b;
+        }
+ .btn{
+    background: #11263d;
+color: #fff;
+}
+.btn:hover{
+    background: #11263d;
+    color:#53c89b
+}
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo-removebg-preview.png" alt="Logo" class="logo"> 
+            <span class="brand-name">AASHA <span class="brandsubname">MedEase</span> </span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+        </ul>
+    </nav>
+<div class="container mt-5">
+    <div class="profile-card">
+        <div class="profile-header mb-4">
+            <a href="{% url 'doctor_profile' doctor.id %}">
+                {% if doctor.profile_picture %}
+                    <div id="profile-pic">
+                        <img src="{{ doctor.profile_picture.url }}" alt="Profile Picture">
+                    </div>
+                {% else %}
+                    <!-- <div id="profile-icon"> -->
+                        <!-- <i class="fas fa-user"></i> User Icon -->
+                        <!-- <i class="bi bi-person-circle profile-icon"></i>
+                    </div> -->
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="#87d8b9" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="none"/>
+                        <circle cx="12" cy="10" r="4" fill="white"/>
+                        <path d="M6 18C6 15.8 8 14 12 14C16 14 18 15.8 18 18" fill="white"/>
+                    </svg>
+                {% endif %}
+            </a>
+            <div>
+                <h2 class="fw-bold">{{ doctor.full_name }}</h2>
+            </div>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-envelope icon"></i> <strong>Email:</strong> {{ doctor.user.email }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-telephone icon"></i> <strong>Phone:</strong> {{ doctor.phone }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Specialization & Workplace -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-heart-pulse icon"></i> <strong>Specialization:</strong> {{ doctor.specialization }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-building icon"></i> <strong>Workplace:</strong> {{ doctor.workplace }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience & Consultation Mode -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-star icon"></i> <strong>Experience:</strong> {{ doctor.experience }} years
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-laptop icon"></i> <strong>Consultation Mode:</strong> {{ doctor.consultation_mode }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="info-box">
+            <i class="bi bi-calendar icon"></i> <strong>Available Days:</strong> {{ doctor.available_days }}
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-clock icon"></i> <strong>Start Time:</strong> {{ doctor.start_time }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-box">
+                    <i class="bi bi-clock icon"></i> <strong>End Time:</strong> {{ doctor.end_time }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Address -->
+        <div class="info-box">
+            <i class="bi bi-geo-alt icon"></i> <strong>Address:</strong> {{ doctor.address }}
+        </div>
+
+        <!-- Book Appointment Button -->
+        <div class="text-center mt-4">
+            <a href="{% url 'patient_dashboard' %}" class="btn"><i class="bi bi-calendar-check"></i> Book Appointment</a>
+        </div>
+        <!-- <a href="{% url 'patient_dashboard' doctor.id %}" class="btn btn-success">
+            <i class="bi bi-calendar-check"></i> Book Appointment
+        </a> -->
+        
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleMenu() {
+        document.querySelector(".nav-links").classList.toggle("active");
+    }
+</script>
+</body>
+</html>
