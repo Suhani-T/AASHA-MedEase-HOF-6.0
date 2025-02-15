@@ -7,51 +7,65 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-                        .hero {
+        .hero {
             background: url('https://source.unsplash.com/1600x900/?healthcare,hospital') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 100px 20px;
         }
        
-        #search_doctor{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction: column;
-        }
-        #search {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            display: block;
-        }
+        .doctor-container {
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px; /* Adjust height as needed */
+}
 
-        .result-item {
-        transition: background-color 0.3s ease-in-out;
-        }
-        .result-item:hover {
-            background-color: #f8f9fa; /* Light gray hover effect */
-        }
+#search_doctor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
 
+#search {
+    width: 100%;  /* Ensures responsiveness */
+    max-width: 700px;
+    margin: 10px auto; /* Adds some spacing */
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.result-item {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.result-item:hover {
+    background-color: #11263d; /* Light gray hover effect */
+}
 
         .navbar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #11263d;
-            padding: 0px 0px;
-            position: relative;
-        }
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0E2A47; /* Match your theme */
+    padding: 0px 10px;
+    position: relative;
+}
 
         .logo-text {
             display: flex;
             align-items: center;
+            
         }
 
         .navbar-logo {
             height: 30px;
-            margin-right: 0px;
+            margin-right: 10px;
         }
 
         .navbar h1 {
@@ -68,9 +82,13 @@
         }
 
         .nav-links {
-            display: flex;
-            gap: 20px;
-        }
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+        
 
         .nav-links a {
             text-decoration: none;
@@ -89,14 +107,13 @@
         }
 
         .btn-lg {
+            background-color: transparent;
+            border: none;
             color: white;
-            padding: 8px 20px;
+            padding: 8px 12px;
             border-radius: 5px;
             text-decoration: none;
-            background: transparent;
-            /* border: 1px solid white; */
-            text-align: center;
-            width: 100%;
+            font-size: 12px;
             transition: all 0.3s;
         }
 
@@ -157,6 +174,7 @@
             .buttons {
                 margin-top: 15px;
                 width: 80%;
+                
             }
 
             .btn-lg {
@@ -189,7 +207,28 @@
             object-fit: cover;
             height: 350px;
         }
+                
+            .carousel-caption {
+                position: absolute;
+                top: 80%;
+                left: 20%;
+                transform: translate(-50%, -50%);
+    background: none(0, 0, 0, 0.5); /* Dark overlay for readability */
+    padding: 15px;
+    border-radius: 10px;
+    color: #11263d;
+    width: 80%;
+}
 
+.carousel-caption h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.carousel-caption p {
+    font-size: 18px;
+}
             
 
 
@@ -267,18 +306,50 @@
         #aasha{
             margin-left: -250px;
         }
-        .alphabet-container {
+
+        .doctor-container {
             display: flex;
             justify-content: flex-start; /* Aligns container to the left */
             align-items: center;
             background: white;
             padding: 20px;
             margin: 30px auto;
-            width: 100%;
+            width: 110%;
             max-width: 1200px;
             border-radius: 15px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Dropdown shadow effect */
             margin-left: 2; /* Shift it fully to the left */
+        
+        }
+        
+        .alphabet-container h2 {
+            position: absolute;
+            top: 10px; /* Adjust the top position */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px; /* Adjust size as needed */
+            font-weight: bold;
+            margin: 0;
+            color: #11263d;
+            gap: 10px;
+        }
+        
+        .alphabet-container {
+            position: relative;
+            text-align: center; /* Centers text horizontally */
+            align-items: center;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            background: white;
+            flex-direction: column;
+            padding: 35px;
+            margin: 30px auto;
+            width: 110%;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Dropdown shadow effect */
+            
             }
 
         .alphabet-buttons {
@@ -289,8 +360,8 @@
             margin-top: 20px;
         }
 
-.alphabet-buttons button {
-    width: 50px;
+        .alphabet-buttons button {
+            width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 2px solid #11263d;
@@ -523,10 +594,10 @@
 
 
            <!-- Welcome Statement -->
-           <section class="greet">
+           <!--<section class="greet">
         <h2>Welcome, Patient!</h2>
         <p>Manage your health, appointments, and medical records conveniently.</p>
-    </section>
+    </section>-->
 
  <!-- Carousel Section -->
  <section class="carousel-container">
@@ -573,25 +644,25 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-        <!-- Find Doctors Section 
+        <!-- Find Doctors Section--> 
+         <div class="doctor-container">
+            <h2>Find your Doctor</h2>
+            <h5>Finding the right doctor has never been easier! </h5>
         <div class="container mt-4" id="search_doctor">
             <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
             <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
             <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
         </div>
+         </div>
 
-    </header>-->
+    </header>
 
             <!--disease-->
 
-    <div class="alphabet-container"></div>
-    <h2> Search Doctor</h2>
-        <div class="container mt-4" id="search_doctor">
-            <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
-            <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
-            <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
-        </div>
-    <h2> Search Diseases by letter </h2>
+    <div class="alphabet-container">
+    
+    <h2> Search Diseases by Letter </h2>
+    
     <div class="alphabet-buttons">
         <button onclick="openDiseasePage('A')">A</button>
         <button onclick="openDiseasePage('B')">B</button>
@@ -703,7 +774,15 @@
         function toggleMenu() {
             document.getElementById("menu-content").classList.toggle("open");
         }
+
     
+</script>
+<script>
+    function openDiseasePage(letter) {
+        window.location.href = `disease.html?letter=${letter}`;
+    }
+
+        
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
