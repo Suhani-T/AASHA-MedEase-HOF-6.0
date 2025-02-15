@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -242,7 +243,7 @@ section {
   
     <nav class="navbar">
         <div class="logo-container">
-            <img src="logo-removebg-preview.png" alt="Logo" class="logo"> 
+            <img src="{% static 'images/logo-removebg-preview.png' %}" alt="Logo" class="logo"> 
             <span class="brand-name">AASHA <span class="brandsubname">MedEase</span> </span>
         </div>
         <ul class="nav-links">
@@ -255,7 +256,7 @@ section {
         <div class="container">
             <h2>About AASHA MedEase</h2>
             <p>Aasha Medease is a beacon of hope for those seeking medical care. Our platform aims to provide accessible and affordable healthcare solutions, bridging the gap between patients and medical professionals. With Aasha Medease, we envision a future where everyone has the opportunity to receive quality medical attention, regardless of their geographical location or financial constraints. Our mission is to empower individuals to take control of their health, and our team is dedicated to making this vision a reality.</p>
-            <img src="logo-removebg-preview.png" alt="aasha">
+            <img src="{% static 'images/logo-removebg-preview.png' %}" alt="aasha">
         </div>
     </section>
     <section id="journey">
