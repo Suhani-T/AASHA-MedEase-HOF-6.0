@@ -7,27 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-        .hero {
+                        .hero {
             background: url('https://source.unsplash.com/1600x900/?healthcare,hospital') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 100px 20px;
         }
-        .feature-icon {
-            font-size: 2rem;
-            color: #0d6efd;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .logo img {
-            width: 80px;
-            height: 80px;
-        }
-
+       
         #search_doctor{
             display:flex;
             justify-content:center;
@@ -48,6 +34,7 @@
             background-color: #f8f9fa; /* Light gray hover effect */
         }
 
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -56,89 +43,668 @@
             padding: 0px 0px;
             position: relative;
         }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            height: 30px;
+            margin-right: 0px;
+        }
+
+        .navbar h1 {
+            font-size: 22px;
+            color: white;
+        }
+
+        .white-text { color: white; }
+        .green-text { color: #53c89b; }
+
+        .menu-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #53c89b;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-lg {
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            background: transparent;
+            /* border: 1px solid white; */
+            text-align: center;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-lg:hover {
+            /* background-color: #53c89b; */
+            color: #53c89b;
+        }
+
+        .menu-button {
+            display: none;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .menu-content {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #11263d;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                align-items: center;
+            }
+
+            .menu-content.open {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links, .buttons {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+
+            .nav-links a, .btn-lg {
+                display: block;
+                width: 80%;
+                padding: 12px;
+                text-align: center;
+                border-radius: 5px;
+            }
+
+            .nav-links a {
+                margin-bottom: 10px;
+            }
+
+            .buttons {
+                margin-top: 15px;
+                width: 80%;
+            }
+
+            .btn-lg {
+                margin-bottom: 10px;
+            }
+        }
+
+        .greet {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20vh; /* Reduce height so it moves up */
+    margin-top: -20px; /* Negative margin to shift it closer to navbar */
+}
+
+.greet h2 {
+    font-size: 28px;
+    color: #11263d;
+}
+
+.greet p {
+    font-size: 14px;
+    color: #333;
+}
+
+
+        .carousel-inner img {
+            object-fit: cover;
+            height: 350px;
+        }
+
+            
+
+
+        .footer {
+            background-color: #11263d;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .newsletter {
+            margin-bottom: 20px;
+        }
+
+        .newsletter h3{
+            color: white;
+        }
+
+        .newsletter p{
+            color: white;
+        }
+        .newsletter input {
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+        }
+        .newsletter button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #53c89b;
+            color: #11263d;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .links {
+            margin: 20px 0;
+        }
+        .links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .links p {
+            color: white;
+            
+        }
+        .social-icons, .app-links {
+            margin: 20px 0;
+            color: white;
+        }
+        .social-icons img, .app-links img {
+            width: 30px;
+            margin: 0 5px;
+        }
+        .policies {
+            margin-top: 20px;
+        }
+        .policies a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            font-size: 12px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .contact-us h3{
+            color: white;
+        }
+
+        .contact-us p{
+            color: white;
+        }
+        #aasha{
+            margin-left: -250px;
+        }
+        .alphabet-container {
+            display: flex;
+            justify-content: flex-start; /* Aligns container to the left */
+            align-items: center;
+            background: white;
+            padding: 20px;
+            margin: 30px auto;
+            width: 100%;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Dropdown shadow effect */
+            margin-left: 2; /* Shift it fully to the left */
+            }
+
+        .alphabet-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+.alphabet-buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #11263d;
+    background-color: white;
+    color: #11263d;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alphabet-buttons button:hover {
+    background-color: #11263d;
+    color: white;
+}
+
+
+            .info-section {
+                width: 80%;
+                margin: 50px auto;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .info-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                gap: 50px;
+                opacity: 0;
+                transform: translateY(50px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+
+            /* When visible */
+            .info-container.show {
+                opacity: 10;
+                transform: translateY(0);
+            }
+
+
+            info-container.reverse {
+                flex-direction: row-reverse  !important;
+                align-items: center;
+                justify-content: space-between;
+                position: absolute;
+            }
+
+                /* Styling for text */
+            .info-text {
+                background: #11263d; /* Dark background for contrast */
+                color: white;
+                padding: 100px;
+                border-radius: 10px; /* Rounded corners */
+                flex: 1;
+                max-width: 500px;
+                position: relative;
+                z-index: 2; /* Ensures text stays above */
+                box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+                border: 2px solid white; /* Optional: Add a border */
+    }
+
+            .info-text h2 {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .info-text p {
+                font-size: 16px;
+                line-height: 1.5;
+                color: white;
+                margin-bottom: 10px;
+            }
+
+            .info-text a {
+                color: white;
+                text-decoration: none;
+            }
+
+            .info-text a:hover {
+                text-decoration: underline;
+            }
+
+
+        
+
+    /* Styling for images */
+
+    .info-image{
+        flex: 1;
+        position: relative;
+        max-width: 700px;
+    }
+    .info-image img {
+        width: 120%;
+        border-radius: 20px;
+        box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+        position: absolute; /* Allows image to overlap */
+        right: -120px; /* Move image over the text */
+        top: -160px; /* Adjust overlap position */
+        z-index: 3; /* Ensures it stays above */
+    }
+    .info-container:not(.reverse) .info-image img {
+        right: auto;  /* Reset right positioning */
+        left: -140px; /* Move image to the left */
+        
+    }
+
+
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .info-container {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .info-container.reverse {
+            flex-direction: column;
+        }
+
+        .info-image img {
+            max-width: 100%;
+        }
+    }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .chatbot-body {
+            display: none;
+            background: white;
+            border: 1px solid #ccc;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+        .chatbot-button img {
+            width: 40px;
+            height: 40px;
+        }
+        .chatbot-footer {
+            display: flex;
+            padding: 5px;
+            border-top: 1px solid #ccc;
+        }
+        .chatbot-footer button {
+            background-color: #11263d;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .message {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .bot-message {
+            background: #53c89b;
+        }
+        .user-message {
+            background: #11263d;
+            color: white;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
-    <!-- Logo -->
-    <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039436.png" alt="Logo">
-        <h1 class="ms-3">Virtual Doctor</h1>
-    </div>
+  
 
-    <!-- Welcome Statement -->
-    <section class="container my-4 text-center">
-        <h2>Welcome, Patient!</h2>
-        <p>Manage your health, appointments, and medical records conveniently.</p>
-    </section>
+ 
     
     <!-- Hero Section -->
-    <header class="hero">
-        <h1>Your Health, Our Priority</h1>
-        <p>Book appointments, check prescriptions, and track your health easily.</p>
-        <a href="{% url 'patient_dashboard' %}" class="btn btn-success btn-lg">
+    <header>
+        <nav class="navbar">
+            <div class="logo-text">
+                <img src="logo-removebg-preview.png" alt="Logo" class="navbar-logo">
+                <h1><span class="white-text">AASHA</span> <span class="green-text">MedEase</span></h1>
+            </div>
+            
+            <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+            
+            <div class="menu-content" id="menu-content">
+                <div class="nav-links">
+                    <a href="about us.html">About Us</a>
+                    <a href="FAQ'S.html">FAQs</a>
+                    <a href="#footer">Contact Us</a>
+                </div>
+                <div class="buttons">
+        <a href="{% url 'patient_dashboard' %}" class="btn-lg">
             <i class="bi bi-speedometer2"></i> Go to Dashboard
         </a>
         
         <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-lg">
+            <button type="submit" class=" btn-lg">
                 <i class="bi bi-box-arrow-right"></i>Logout
             </button>
         </form>
+    </div>
+</div>
+</header>
 
-        <!-- Find Doctors Section --> 
+
+           <!-- Welcome Statement -->
+           <section class="greet">
+        <h2>Welcome, Patient!</h2>
+        <p>Manage your health, appointments, and medical records conveniently.</p>
+    </section>
+
+ <!-- Carousel Section -->
+ <section class="carousel-container">
+
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+                <img src="Image 1jpg.jpg" class="d-block w-100" alt="Image 1">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Image 2.jpg" class="d-block w-100" alt="Image 2">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Image 3.jpg" class="d-block w-100" alt="Image 3">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Image 4.jpg" class="d-block w-100" alt="Image 4">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+        <!-- Find Doctors Section 
         <div class="container mt-4" id="search_doctor">
             <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
             <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
             <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
         </div>
 
-    </header>
+    </header>-->
 
-    <!-- Dashboard Features -->
-    <section class="container my-5">
-        <h2 class="text-center">Patient Portal</h2>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-calendar-check"></i>
-                <h5>Book Appointments</h5>
-                <p>Schedule consultations with your preferred doctor.</p>
+            <!--disease-->
+
+    <div class="alphabet-container"></div>
+    <h2> Search Doctor</h2>
+        <div class="container mt-4" id="search_doctor">
+            <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
+            <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
+            <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
+        </div>
+    <h2> Search Diseases by letter </h2>
+    <div class="alphabet-buttons">
+        <button onclick="openDiseasePage('A')">A</button>
+        <button onclick="openDiseasePage('B')">B</button>
+        <button onclick="openDiseasePage('C')">C</button>
+        <button onclick="openDiseasePage('D')">D</button>
+        <button onclick="openDiseasePage('E')">E</button>
+        <button onclick="openDiseasePage('F')">F</button>
+        <button onclick="openDiseasePage('G')">G</button>
+        <button onclick="openDiseasePage('H')">H</button>
+        <button onclick="openDiseasePage('I')">I</button>
+        <button onclick="openDiseasePage('J')">J</button>
+        <button onclick="openDiseasePage('K')">K</button>
+        <button onclick="openDiseasePage('L')">L</button>
+        <button onclick="openDiseasePage('M')">M</button>
+        <button onclick="openDiseasePage('N')">N</button>
+        <button onclick="openDiseasePage('O')">O</button>
+        <button onclick="openDiseasePage('P')">P</button>
+        <button onclick="openDiseasePage('Q')">Q</button>
+        <button onclick="openDiseasePage('R')">R</button>
+        <button onclick="openDiseasePage('S')">S</button>
+        <button onclick="openDiseasePage('T')">T</button>
+        <button onclick="openDiseasePage('U')">U</button>
+        <button onclick="openDiseasePage('V')">V</button>
+        <button onclick="openDiseasePage('W')">W</button>
+        <button onclick="openDiseasePage('X')">X</button>
+        <button onclick="openDiseasePage('Y')">Y</button>
+        <button onclick="openDiseasePage('Z')">Z</button>
+    </div>
+    </div>
+
+    
+    <!-- Footer -->
+     <!--Information-->
+     <section class="info-section">
+        <!-- First Block -->
+        <div class="info-container">
+            <div class="info-text">
+                <h2>Why choose AASHA MedEase</h2>
+                <p><strong>The right answers the first time</strong></p>
+                <p>
+                Your health deserves the best. Choose Aasha Medease to get personalized, affordable, and accessible healthcare that empowers you to take control of your well-being. Start your journey with us today and experience healthcare that cares for you.
+                </p>
+            
             </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-file-medical"></i>
-                <h5>Medical Records</h5>
-                <p>Access your health history and lab reports securely.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-capsule"></i>
-                <h5>Prescriptions</h5>
-                <p>View and download your prescribed medications.</p>
+            <div class="info-image">
+                <img src="image 5.jpg" alt="Doctor treating patient">
             </div>
         </div>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-clipboard-pulse"></i>
-                <h5>AI Symptom Checker</h5>
-                <p>Get AI-powered health insights based on symptoms.</p>
+
+        <!-- Second Block -->
+        <div class="info-container reverse">
+
+            <div class="info-image " >
+                <img src="Image 6.jpg" alt="Mother with baby">
             </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-chat-dots"></i>
-                <h5>Doctor Communication</h5>
-                <p>Chat with your doctor for follow-ups and consultations.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-cash-stack"></i>
-                <h5>Billing & Payments</h5>
-                <p>View invoices and manage medical expenses.</p>
+            <div class="info-text">
+                <h2>World-class care for patients</h2>
+                <p>
+                    World-class healthcare should not be a privilege—it should be a right. At Aasha Medease, we bring top-tier medical expertise, advanced technology, and patient-focused care together to ensure that you receive the best treatment, every time.            </p>
             </div>
         </div>
     </section>
+
+   <!--Chatbot-->
+    <div class="chatbot-container">
+        <div class="chatbot-body" id="chatbot-body">
+            <div id="chat-messages"></div>
+            <div class="chatbot-footer">
+                <input type="text" id="user-input" placeholder="Type a question..." onkeydown="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-button" onclick="toggleChatbot()">
+            <img src="icon.png" alt="Chat">
+        </button>
+    </div>
+    <!--Footer-->
+    <div class="footer" id="footer">
+    <div class="newsletter">
+        
+        <p style="font-size: 12px; opacity: 0.8;">
+            By clicking Subscribe, I agree to the 
+            <a href="#">AASHA MedEase Terms & Conditions & Privacy Policy</a>
+        </p>
+    </div>
+    <div class="social-icons">
+        <img src="Facebook-icon.png" alt="Facebook">
+        <img src="twitter-icon.png" alt="Twitter">
+        <img src="instagram-icon.png" alt="Instagram">
+    </div>
+    <div class="links">
+        <a href="#">Policies</a> | <a href="about us.html">About Us</a> | <a href="Feedback.html">Feedback</a> 
+    </div>
+    <div class="policies">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Editorial Policy</a>
+        <a href="#">Advertising Policy</a>
+        <a href="#">Correction Policy</a>
+        <a href="#">Terms of Use</a>
+    </div>
+    <div class="contact-us">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:support@aashamedease.com">support@aashamedease.com</a></p>
+    </div>
+</div>
+<script>
+
+        function toggleMenu() {
+            document.getElementById("menu-content").classList.toggle("open");
+        }
     
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3">
-        <p>&copy; 2025 Virtual Doctor Appointments | <a href="#" class="text-white">Privacy Policy</a></p>
-    </footer>
-    
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById("search").addEventListener("input", function() {
@@ -175,6 +741,71 @@
                 });
         });
     </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const infoSections = document.querySelectorAll(".info-container");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show"); // Add the show class when visible
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 20% of the section is visible
+
+        infoSections.forEach((section) => {
+            observer.observe(section);
+        });
+    });
+</script>
+
+</script>
+
+<script>
+const qaPairs = {
+"What are the signs of a heart attack?": "The signs of a heart attack can include chest pain, discomfort in the upper body (arms, neck, jaw), shortness of breath, cold sweat, nausea, or lightheadedness. If you experience these symptoms, seek medical help immediately.",
+"What does diabetes feel like?": "Diabetes can cause symptoms like increased thirst, frequent urination, fatigue, blurred vision, and slow-healing wounds. It can also lead to low blood sugar symptoms like shakiness, sweating, dizziness, and hunger.",
+"How do I treat a cold or flu?": "To treat a cold or flu, rest, stay hydrated, and use over-the-counter medications like pain relievers, decongestants, or cough syrup. Steam inhalation or saltwater gargles can soothe a sore throat and congestion.",
+"What are the early symptoms of cancer?": "Early symptoms of cancer can include unexplained weight loss, persistent pain, unexplained fatigue, skin changes, lumps or thickening, and difficulty swallowing. It's important to see a doctor for further evaluation.",
+"Can you explain high blood pressure?": "High blood pressure (hypertension) occurs when the blood pressure in your arteries is consistently too high. It may cause symptoms like headaches, dizziness, and shortness of breath. Treatment includes lifestyle changes and medications to manage blood pressure.",
+"What are the symptoms of asthma?": "Asthma symptoms include shortness of breath, wheezing (a whistling sound when breathing), chest tightness, and persistent cough, especially at night or during physical activity. Asthma attacks can be triggered by allergens, cold air, or exercise.",
+"How can I manage chronic pain?": "Chronic pain management can include medications, physical therapy, cognitive behavioral therapy (CBT), alternative therapies like acupuncture, and lifestyle changes such as regular exercise and stress management.",
+"What is rheumatoid arthritis and how is it treated?": "Rheumatoid arthritis (RA) is an autoimmune disease where the immune system attacks the joints, leading to pain, swelling, and stiffness. Treatment includes medications like DMARDs, biologic treatments, pain relief, and physical therapy.",
+"What is the difference between Type 1 and Type 2 diabetes?": "Type 1 diabetes is an autoimmune condition where the body doesn't produce insulin. Type 2 diabetes occurs when the body doesn't use insulin properly or doesn't make enough. Both types require management, but Type 1 typically requires insulin injections, while Type 2 can often be managed through diet and exercise.",
+"What are the symptoms of COVID-19?": "Common symptoms of COVID-19 include fever, cough, shortness of breath, fatigue, muscle aches, sore throat, loss of taste or smell, congestion, and runny nose. If you experience symptoms or suspect exposure, get tested and follow health guidelines."
+};
+
+    function toggleChatbot() {
+        const chatbotBody = document.getElementById("chatbot-body");
+        chatbotBody.style.display = chatbotBody.style.display === "block" ? "none" : "block";
+    }
+
+    function sendMessage() {
+        const inputField = document.getElementById("user-input");
+        const messageText = inputField.value.trim();
+        if (!messageText) return;
+
+        displayMessage(messageText, "user");
+        const response = qaPairs[messageText] || "I'm not sure about that. Can you rephrase?";
+        setTimeout(() => displayMessage(response, "bot"), 500);
+        inputField.value = "";
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    function displayMessage(text, sender) {
+        const chatMessages = document.getElementById("chat-messages");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender === "bot" ? "bot-message" : "user-message");
+        messageDiv.innerText = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+</script>
 
 </body>
 </html>
