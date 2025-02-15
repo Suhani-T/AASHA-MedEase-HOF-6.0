@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -174,7 +175,18 @@
                 height: 350px;
             }      
 
-            .carousel-caption {
+            .carousel-inner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(42, 31, 56, 0.1));
+    pointer-events: none; /* Prevents it from blocking interactions */
+}
+
+.carousel-caption {
                 position: absolute;
                 top: 80%;
                 left: 20%;
@@ -182,8 +194,9 @@
     background: none(0, 0, 0, 0.5); /* Dark overlay for readability */
     padding: 15px;
     border-radius: 10px;
-    color: #11263d;
+    color: white;
     width: 80%;
+    z-index:2;
 }
 
 .carousel-caption h2 {
@@ -387,7 +400,8 @@
             #aasha{
                 margin-left: -250px;
             }
-        
+            
+            
     </style>
 </head>
 <body>
@@ -395,7 +409,7 @@
     <header>
         <nav class="navbar">
             <div class="logo-text">
-                <img src="logo-removebg-preview.png" alt="Logo" class="navbar-logo">
+                <img src="{% static 'images/logo-removebg-preview.png'%}" alt="Logo" class="navbar-logo">
                 <h1><span class="white-text">AASHA</span> <span class="green-text">MedEase</span></h1>
             </div>
             
@@ -426,28 +440,28 @@
             <div class="carousel-inner">
                 
                 <div class="carousel-item active">
-                    <img src="Image 1jpg.jpg" class="d-block w-100" alt="Image 1">
+                    <img src="{% static 'images/Image 1jpg.jpg'%}" class="d-block w-100" alt="Image 1">
                     <div class="carousel-caption">
                         <h2>Welcome to AASHA MedEase</h2>
                         <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="Image 2.jpg" class="d-block w-100" alt="Image 2">
+                    <img src="{% static 'images/Image 2.jpg'%}" class="d-block w-100" alt="Image 2">
+                    <div class="carousel-caption">
+                        <h2>Welcome to AASHA MedEase</h2>
+                        <p>"Revolutionizing Healthcare, Inspiring Hope, Always."</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/Image 3.jpg'%}" class="d-block w-100" alt="Image 3">
                     <div class="carousel-caption">
                         <h2>Welcome to AASHA MedEase</h2>
                         <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="Image 3.jpg" class="d-block w-100" alt="Image 3">
-                    <div class="carousel-caption">
-                        <h2>Welcome to AASHA MedEase</h2>
-                        <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="Image 4.jpg" class="d-block w-100" alt="Image 4">
+                    <img src="{% static 'images/Image 4.jpg'%}" class="d-block w-100" alt="Image 4">
                     <div class="carousel-caption">
                         <h2>Welcome to AASHA MedEase</h2>
                         <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
@@ -476,7 +490,7 @@
             
             </div>
             <div class="info-image">
-                <img src="image 5.jpg" alt="Doctor treating patient">
+                <img src="{% static 'images/image 5.jpg'%}" alt="Doctor treating patient">
             </div>
         </div>
 
@@ -484,7 +498,7 @@
         <div class="info-container reverse">
 
             <div class="info-image " >
-                <img src="Image 6.jpg" alt="Mother with baby">
+                <img src="{% static 'images/Image 6.jpg'%}" alt="Mother with baby">
             </div>
             <div class="info-text">
                 <h2>World-class care for patients</h2>
@@ -523,9 +537,9 @@
             </p>
         </div>
         <div class="social-icons">
-            <img src="Facebook-icon.png" alt="Facebook">
-            <img src="twitter-icon.png" alt="Twitter">
-            <img src="instagram-icon.png" alt="Instagram">
+            <img src="{% static 'images/Facebook-icon.png'%}" alt="Facebook">
+            <img src="{% static 'images/twitter-icon.png'%}" alt="Twitter">
+            <img src="{% static 'images/instagram-icon.png'%}" alt="Instagram">
         </div>
         <div class="links">
             <a href="#">Policies</a> | <a href="about us.html">About Us</a> | <a href="Feedback.html">Feedback</a> 

@@ -1,3 +1,4 @@
+{ % load static % }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,7 +218,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
         <div class="navbar-brand">  
-                <img src="logo-removebg-preview.png" alt="AASHA Logo">
+                <img src="{% static 'images/logo-removebg-preview.png'%}" alt="AASHA Logo">
                 <span class="brand-text">AASHA <span>MedEase</span></span>
             </div> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -248,13 +249,13 @@
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="doctorimg1.jpg" class="d-block w-100" alt="...">
+            <img src="{% static 'images/doctorimg1.jpg'%}" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="doctorimg2.jpg" class="d-block w-100" alt="...">
+            <img src="{% static 'images/doctorimg2.jpg'%}" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="doctorimg3.jpg" class="d-block w-100" alt="...">
+            <img src="{% static 'images/doctorimg3.jpg'%}" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -270,7 +271,7 @@
          - Empowering Doctors with Smart Healthcare Solutions</div>
       <div class="container7">
         <div class="main-content">
-            <img src="doctorimg4.avif" alt="Doctor Dashboard">
+            <img src="{% static 'images/doctorimg4.avif'%}" alt="Doctor Dashboard">
             <div class="news-card">
                 <h2>Efficient Healthcare Management</h2>
                 <p>Streamline your practice with AI-powered tools and real-time patient management.</p>

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,51 +8,65 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-                        .hero {
+        .hero {
             background: url('https://source.unsplash.com/1600x900/?healthcare,hospital') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 100px 20px;
         }
        
-        #search_doctor{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction: column;
-        }
-        #search {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
-            display: block;
-        }
+        .doctor-container {
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px; /* Adjust height as needed */
+}
 
-        .result-item {
-        transition: background-color 0.3s ease-in-out;
-        }
-        .result-item:hover {
-            background-color: #f8f9fa; /* Light gray hover effect */
-        }
+#search_doctor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
 
+#search {
+    width: 100%;  /* Ensures responsiveness */
+    max-width: 700px;
+    margin: 10px auto; /* Adds some spacing */
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.result-item {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.result-item:hover {
+    background-color: #11263d; /* Light gray hover effect */
+}
 
         .navbar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #11263d;
-            padding: 0px 0px;
-            position: relative;
-        }
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0E2A47; /* Match your theme */
+    padding: 0px 10px;
+    position: relative;
+}
 
         .logo-text {
             display: flex;
             align-items: center;
+            
         }
 
         .navbar-logo {
             height: 30px;
-            margin-right: 0px;
+            margin-right: 10px;
         }
 
         .navbar h1 {
@@ -68,9 +83,13 @@
         }
 
         .nav-links {
-            display: flex;
-            gap: 20px;
-        }
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+        
 
         .nav-links a {
             text-decoration: none;
@@ -89,14 +108,13 @@
         }
 
         .btn-lg {
+            background-color: transparent;
+            border: none;
             color: white;
-            padding: 8px 20px;
+            padding: 8px 12px;
             border-radius: 5px;
             text-decoration: none;
-            background: transparent;
-            /* border: 1px solid white; */
-            text-align: center;
-            width: 100%;
+            font-size: 12px;
             transition: all 0.3s;
         }
 
@@ -157,6 +175,7 @@
             .buttons {
                 margin-top: 15px;
                 width: 80%;
+                
             }
 
             .btn-lg {
@@ -190,6 +209,39 @@
             height: 350px;
         }
 
+        .carousel-inner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(42, 31, 56, 0.1));
+    pointer-events: none; /* Prevents it from blocking interactions */
+}
+                
+            .carousel-caption {
+                position: absolute;
+                top: 80%;
+                left: 20%;
+                transform: translate(-50%, -50%);
+    background: none(0, 0, 0, 0.5); /* Dark overlay for readability */
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    width: 80%;
+    z-index:2;
+}
+
+.carousel-caption h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.carousel-caption p {
+    font-size: 18px;
+}
             
 
 
@@ -267,18 +319,50 @@
         #aasha{
             margin-left: -250px;
         }
-        .alphabet-container {
+
+        .doctor-container {
             display: flex;
             justify-content: flex-start; /* Aligns container to the left */
             align-items: center;
             background: white;
             padding: 20px;
             margin: 30px auto;
-            width: 100%;
+            width: 110%;
             max-width: 1200px;
             border-radius: 15px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Dropdown shadow effect */
             margin-left: 2; /* Shift it fully to the left */
+        
+        }
+        
+        .alphabet-container h2 {
+            position: absolute;
+            top: 10px; /* Adjust the top position */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px; /* Adjust size as needed */
+            font-weight: bold;
+            margin: 0;
+            color: #11263d;
+            gap: 10px;
+        }
+        
+        .alphabet-container {
+            position: relative;
+            text-align: center; /* Centers text horizontally */
+            align-items: center;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            background: white;
+            flex-direction: column;
+            padding: 35px;
+            margin: 30px auto;
+            width: 110%;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Dropdown shadow effect */
+            
             }
 
         .alphabet-buttons {
@@ -289,8 +373,8 @@
             margin-top: 20px;
         }
 
-.alphabet-buttons button {
-    width: 50px;
+        .alphabet-buttons button {
+            width: 50px;
     height: 50px;
     border-radius: 50%;
     border: 2px solid #11263d;
@@ -494,7 +578,7 @@
     <header>
         <nav class="navbar">
             <div class="logo-text">
-                <img src="logo-removebg-preview.png" alt="Logo" class="navbar-logo">
+                <img src="{% static 'images/logo-removebg-preview.png'%}" alt="Logo" class="navbar-logo">
                 <h1><span class="white-text">AASHA</span> <span class="green-text">MedEase</span></h1>
             </div>
             
@@ -508,7 +592,8 @@
                 </div>
                 <div class="buttons">
         <a href="{% url 'patient_dashboard' %}" class="btn-lg">
-            <i class="bi bi-speedometer2"></i> Go to Dashboard
+            <i class="bi bi-speedometer2"></i> 
+            Go to Dashboard
         </a>
         
         <form action="{% url 'logout' %}" method="POST">
@@ -523,10 +608,10 @@
 
 
            <!-- Welcome Statement -->
-           <section class="greet">
+           <!--<section class="greet">
         <h2>Welcome, Patient!</h2>
         <p>Manage your health, appointments, and medical records conveniently.</p>
-    </section>
+    </section>-->
 
  <!-- Carousel Section -->
  <section class="carousel-container">
@@ -536,28 +621,28 @@
         <div class="carousel-inner">
             
             <div class="carousel-item active">
-                <img src="Image 1jpg.jpg" class="d-block w-100" alt="Image 1">
+                <img src="{% static 'images/Image 1jpg.jpg'%}" class="d-block w-100" alt="Image 1">
                 <div class="carousel-caption">
                     <h2>Welcome to AASHA MedEase</h2>
                     <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="Image 2.jpg" class="d-block w-100" alt="Image 2">
+                <img src="{% static 'images/Image 2.jpg'%}" class="d-block w-100" alt="Image 2">
                 <div class="carousel-caption">
                     <h2>Welcome to AASHA MedEase</h2>
                     <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="Image 3.jpg" class="d-block w-100" alt="Image 3">
+                <img src="{% static 'images/Image 3.jpg'%}" class="d-block w-100" alt="Image 3">
                 <div class="carousel-caption">
                     <h2>Welcome to AASHA MedEase</h2>
                     <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="Image 4.jpg" class="d-block w-100" alt="Image 4">
+                <img src="{% static 'images/Image 4.jpg'%}" class="d-block w-100" alt="Image 4">
                 <div class="carousel-caption">
                     <h2>Welcome to AASHA MedEase</h2>
                     <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
@@ -573,25 +658,25 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-        <!-- Find Doctors Section 
+        <!-- Find Doctors Section--> 
+         <div class="doctor-container">
+            <h2>Find your Doctor</h2>
+            <h5>Finding the right doctor has never been easier! </h5>
         <div class="container mt-4" id="search_doctor">
             <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
             <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
             <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
         </div>
+         </div>
 
-    </header>-->
+    </header>
 
             <!--disease-->
 
-    <div class="alphabet-container"></div>
-    <h2> Search Doctor</h2>
-        <div class="container mt-4" id="search_doctor">
-            <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
-            <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
-            <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
-        </div>
-    <h2> Search Diseases by letter </h2>
+    <div class="alphabet-container">
+    
+    <h2> Search Diseases by Letter </h2>
+    
     <div class="alphabet-buttons">
         <button onclick="openDiseasePage('A')">A</button>
         <button onclick="openDiseasePage('B')">B</button>
@@ -637,7 +722,7 @@
             
             </div>
             <div class="info-image">
-                <img src="image 5.jpg" alt="Doctor treating patient">
+                <img src="{% static 'images/image 5.jpg'%}" alt="Doctor treating patient">
             </div>
         </div>
 
@@ -645,7 +730,7 @@
         <div class="info-container reverse">
 
             <div class="info-image " >
-                <img src="Image 6.jpg" alt="Mother with baby">
+                <img src="{% static 'images/Image 6.jpg'%}" alt="Mother with baby">
             </div>
             <div class="info-text">
                 <h2>World-class care for patients</h2>
@@ -665,7 +750,7 @@
             </div>
         </div>
         <button class="chatbot-button" onclick="toggleChatbot()">
-            <img src="icon.png" alt="Chat">
+            <img src="{% static 'images/icon.png'%}" alt="Chat">
         </button>
     </div>
     <!--Footer-->
@@ -678,9 +763,9 @@
         </p>
     </div>
     <div class="social-icons">
-        <img src="Facebook-icon.png" alt="Facebook">
-        <img src="twitter-icon.png" alt="Twitter">
-        <img src="instagram-icon.png" alt="Instagram">
+        <img src="{% static 'images/Facebook-icon.png'%}" alt="Facebook">
+        <img src="{% static 'images/twitter-icon.png'%}" alt="Twitter">
+        <img src="{% static 'images/instagram-icon.png'%}" alt="Instagram">
     </div>
     <div class="links">
         <a href="#">Policies</a> | <a href="about us.html">About Us</a> | <a href="Feedback.html">Feedback</a> 
@@ -703,7 +788,15 @@
         function toggleMenu() {
             document.getElementById("menu-content").classList.toggle("open");
         }
+
     
+</script>
+<script>
+    function openDiseasePage(letter) {
+        window.location.href = `disease.html?letter=${letter}`;
+    }
+
+        
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
