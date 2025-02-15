@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AASHA MedEase - Patient Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+
     <style>
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            padding: 10px;
         }
         .sidebar {
             flex: 0 0 200px;
@@ -30,15 +31,8 @@
         .navbar {
             background-color: #11263d;
         }
-        .brand-name, .navbar-nav .nav-link {
-            color: white !important;
-            
-        }
-        .brand-name{
-            font-weight: 600 !important;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #53c89b !important;
+        .navbar-brand {
+            color: white;
         }
         .footer {
             background-color: #f8f9fa;
@@ -47,84 +41,122 @@
             margin-top: 30px;
             border-top: 1px solid #ddd;
         }
-        /* Profile Icon */
-        .navbar-nav .nav-item img {
-            border: 2px solid white;
-            transition: 0.3s;
+        /* for actual image */
+        #profile-pic img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #11263d;
         }
-        .navbar-nav .nav-item img:hover {
-            opacity: 0.8;
+        #profile-pic img:hover{
+            cursor: pointer;
         }
 
-        .brand-name span{
-color:#53c89b;
-        }
-        .btn{
-            background: #11263d !important; 
-            color:white;
-
-        }
-        .btn:hover{
-            color:#53c89b;
-            background: #11263d !important; 
-        }
-        .logo-container {
+        /* for general icon */
+        #profile_picture {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ddd;
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #555;
+            border: 2px solid #ccc;
         }
 
+        #profile_picture:hover {
+            background-color: #bbb;
+            cursor: pointer;
+        }
+        .sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    box-shadow:0px 5px 15px 4px rgb(191, 189, 189);
+    /* box-shadow:-5px 0px 15px 4px rgb(183, 182, 182); */
+}
+
+.sidebar h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #11263d;
+    text-align: center;
+}
+
+.sidebar .list-group-item {
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    background-color:#f0f0f0;
+    border: none;  /* Removes default border */
+    border-bottom: 1px solid #d3d2d2; /* Adds border only at the bottom */
+}
+
+/* Remove border from the last item to avoid extra line at the end */
+.sidebar .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar .list-group-item a {
+    text-decoration: none;
+    color: #11263d;
+    display: block;
+}
+
+.sidebar .list-group-item:hover {
+    background-color: #11263d;
+}
+
+.sidebar .list-group-item:hover a {
+    color: #ffffff;
+}
+.nav-link{
+    color:white !important;
+}
+.nav-link:hover{
+    color:#53c89b !important;
+}
+.brand-name span{
+            color:#53c89b !important;
+        }
+        .brand-name{
+            color:white !important;
+            font-size: 1.2rem;
+        font-weight: 600;
+        }
+        .nav-link{
+            color:white !important;
+        }
+        .nav-link:hover{
+            color:#53c89b !important;
+        }
         .logo {
             width: 40px;
             height: 40px;
             margin-right: 12px;
             border-radius: 50%;
         }
-        .sidebar {
-    flex: 0 0 250px !important; /* Forcefully setting width */
-    background-color: #f4f4f4 !important;
-    padding: 20px !important;
-    border-radius: 8px !important;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1) !important;
-}
+        .d-flex .btn{
+background: #11263d !important;
+color: #ffffff !important;
+        }
+        .d-flex .btn:hover{
+            color: #53c89b !important;
+            background: #11263d !important;
+        }
 
-.list-group-item {
-    border: none !important;
-    padding: 12px !important;
-    font-size: 16px !important;
-    transition: background 0.3s, color 0.3s !important;
-}
-
-.list-group-item a {
-    text-decoration: none !important;
-    color: #11263d !important;
-    font-weight: 500 !important;
-}
-
-.list-group-item:hover {
-    background: #53c89b !important;
-    color: white !important;
-}
-
-.list-group-item:hover a {
-    color: white !important;
-}
-.custom-list .list-group-item {
-    background-color: transparent !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    color: #11263d !important;
-    text-align: center;
-}
-
-.custom-list .list-group-item:hover {
-    background-color: #53c89b !important;
-    color: white !important;
-}
-
-
-.parent-container {
-    /* background: linear-gradient(to bottom, #f4f4f4, #d9f3e6); */
-}
-
+        .card{
+            box-shadow:2px 2px 15px 4px rgb(191, 189, 189);
+        }
     </style>
 </head>
 <body>
@@ -142,11 +174,19 @@ color:#53c89b;
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Logout</a>
-                </li>
-                Profile Icon -->
+                </li> -->
+                <!-- Profile Icon -->
                 <!-- <li class="nav-item ms-3">
-                    <a href="profile.html">
-                        <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle" width="40" height="40">
+                    <a href="{% url 'patient_profile_actual' request.user.patient_profile.pk %}">
+                        {% if user.patient_profile.profile_picture %}
+                            <div id="profile-pic">
+                                <img src="{{ user.patient_profile.profile_picture.url }}" alt="Profile Picture">
+                            </div>
+                        {% else %}
+                            <div id="profile_picture">
+                                <i class="fas fa-user"></i>  User Icon -->
+                            <!-- </div>
+                        {% endif %}
                     </a>
                 </li>
             </ul>
@@ -154,10 +194,11 @@ color:#53c89b;
     </nav> --> 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <div class="logo-container">
+            <!-- <a class="navbar-brand" href="#">AASHA <span></span>MedEase</a> -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="logo-removebg-preview.png" alt="Logo" class="logo"> 
-                <span class="brand-name">AASHA <span class="brandsubname">MedEase</span></span>
-            </div>
+                <span class="brand-name">AASHA <span style="color: #53c89b;">MedEase</span></span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -173,9 +214,17 @@ color:#53c89b;
                         <a class="nav-link" href="#">Logout</a>
                     </li>
                     <!-- Profile Icon -->
-                    <li class="nav-item ms-lg-3">
-                        <a href="profile.html">
-                            <img src="https://via.placeholder.com/40" alt="Profile" class="rounded-circle" width="40" height="40">
+                    <li class="nav-item ms-3">
+                        <a href="{% url 'patient_profile_actual' request.user.patient_profile.pk %}">
+                            {% if user.patient_profile.profile_picture %}
+                                <div id="profile-pic">
+                                    <img src="{{ user.patient_profile.profile_picture.url }}" alt="Profile Picture">
+                                </div>
+                            {% else %}
+                                <div id="profile_picture">
+                                    <i class="fas fa-user"></i> <!-- User Icon -->
+                                </div>
+                            {% endif %}
                         </a>
                     </li>
                 </ul>
@@ -183,17 +232,16 @@ color:#53c89b;
         </div>
     </nav>
 
-    <div class="container parent-container mt-4">
+    <div class="container mt-4">
         <!-- Sidebar -->
         <div class="sidebar">
             <h5>Patient Dashboard</h5>
-            <ul class="list-group custom-list">
-                <li class="list-group-item"><a href="profile.html">My Profile</a></li>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{% url 'patient_profile' %}">My Profile</a></li>
                 <li class="list-group-item"><a href="#">Appointment History</a></li>
                 <li class="list-group-item"><a href="#">Settings</a></li>
                 <li class="list-group-item"><a href="#">Help</a></li>
             </ul>
-           
         </div>
 
         <!-- Main Content -->
@@ -204,94 +252,102 @@ color:#53c89b;
                     <h4>Book an Appointment</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post" action="{% url 'book_appointment' %}">
+                        {% csrf_token %}
+                    
+                        <div class="mb-3">
+                            <label for="doctor_input" class="form-label">Select Doctor</label>
+                            <input list="doctor_list" id="doctor_input" name="doctor_name" class="form-control" placeholder="Start typing doctor's name..." required>
+                            <datalist id="doctor_list">
+                                {% for doctor in doctors %}
+                                    <option value="{{ doctor.full_name }} ({{ doctor.specialization }})"></option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                    
                         <div class="mb-3">
                             <label for="reason" class="form-label">Reason for Consultation</label>
-                            <textarea id="reason" class="form-control" rows="3" placeholder="Enter your reason for consultation" required></textarea>
+                            <textarea id="reason" name="reason" class="form-control" rows="3" required></textarea>
                         </div>
+                    
                         <div class="mb-3">
-                            <label for="doctor" class="form-label">Select Doctor</label>
-                            <select id="doctor" class="form-select" required>
-                                <option selected>Select Doctor</option>
-                                <option>Dr. John Doe (Cardiologist)</option>
-                                <option>Dr. Jane Smith (Dermatologist)</option>aa
-                                <option>Dr. Alice Williams (Pediatrician)</option>
+                            <label for="date" class="form-label">Select Date</label>
+                            <input type="date" id="date" name="date" class="form-control" required>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="mode" class="form-label">Mode of Consultation</label>
+                            <select id="mode" name="mode" class="form-select" required>
+                                <option value="" selected disabled>Select Mode</option>
+                                <option value="in_person">In-Person</option>
+                                <option value="video_call">Video Call</option>
+                                <option value="phone_call">Phone Call</option>
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="day" class="form-label">Select Day</label>
-                            <input type="date" id="day" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="time" class="form-label">Select Time</label>
-                            <select id="time" class="form-select" required>
-                                <option selected>Select Time</option>
-                                <option>9:00 AM</option>
-                                <option>10:00 AM</option>
-                                <option>11:00 AM</option>
-                                <option>2:00 PM</option>
-                                <option>3:00 PM</option>
-                            </select>
-                        </div>
+                    
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Confirm Schedule</button>
                         </div>
-                    </form>
+                    </form> 
                 </div>
             </div>
 
-            <!-- Upcoming Appointments & Virtual Queue -->
-            <div class="card">
+            <!-- Current Appointment Section -->
+            {% if current_appointment %}
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4>Current Appointment</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Doctor:</strong> {{ current_appointment.doctor.full_name }}</p>
+                    <p><strong>Specialization:</strong> {{ current_appointment.doctor.specialization }}</p>
+                    
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h4>Virtual Queue For Today's Appointment</h4>
+                </div>
+                <div class="card-body">
+                    {% if current_appointment %}
+                        {% if queue_position is not None %}
+                            <p><strong>Number of patients ahead:</strong> {{ queue_position }}</p>
+                            {% if predicted_time == "It's your turn!" %}
+                                <p class="alert alert-success">{{ predicted_time }}</p>
+                            {% else %}
+                                <p>Estimated Waiting Time: {{ predicted_time }} minutes</p>
+                            {% endif %}
+                        {% else %}
+                            <p>You are next in line!</p>
+                        {% endif %}
+                    {% else %}
+                        <p>You have no active appointments today.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <!-- Upcoming Appointments -->
+            <div class="card mt-4">
                 <div class="card-header">
                     <h4>Upcoming Appointments</h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
+                        {% for appointment in upcoming_appointments %}
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Dr. John Doe - Cardiologist</span>
-                            <span>15th February 2025 - 10:00 AM</span>
+                            <span>{{ appointment.doctor.full_name }} - {{ appointment.doctor.specialization }}</span>
+                            <span>{{ appointment.date }}</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Dr. Jane Smith - Dermatologist</span>
-                            <span>16th February 2025 - 2:00 PM</span>
-                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No upcoming appointments.</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
-
-            <!-- Cancel Appointment Section -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h4>Cancel Appointment</h4>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="cancel-appointment" class="form-label">Select Appointment to Cancel</label>
-                            <select id="cancel-appointment" class="form-select" required>
-                                <option selected>Select Appointment</option>
-                                <option>Dr. John Doe - Cardiologist (15th February 2025)</option>
-                                <option>Dr. Jane Smith - Dermatologist (16th February 2025)</option>
-                            </select>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-danger">Cancel Appointment</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Waiting Time (for same-day appointments) -->
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h4>Virtual Queue</h4>
-                </div>
-                <div class="card-body">
-                    <p><strong>Number of patients to go:</strong> 3</p>
-                    <p><strong> Predicted waiting time:</strong> 15 minutes</p>
-                </div>
-            </div>
-        </div>
+        </div> 
     </div>
 
     <!-- Footer -->
