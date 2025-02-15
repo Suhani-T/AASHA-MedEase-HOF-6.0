@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,83 +13,576 @@
             text-align: center;
             padding: 100px 20px;
         }
-        .feature-icon {
-            font-size: 2rem;
-            color: #0d6efd;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #11263d;
+            padding: 0px 0px;
+            position: relative;
+            height: 40px;
         }
+
+        .logo-text {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            height: 30px;
+            margin-right: 0px;
+        }
+
+        .navbar h1 {
+            font-size: 22px;
+            color: white;
+        }
+
+        .white-text { color: white; }
+        .green-text { color: #53c89b; }
+
+        .menu-content {
+            display: flex;
+            align-items: center;
+            display: flex;
+            flex-grow: 1; /* Allows it to take available space */
+            justify-content: center; /* Centers the nav links */
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #53c89b;
+        }
+
+        .buttons {
+            display: flex;
+            gap: -10px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .btn-lg {
+            color: white;
+            padding: 3px 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            background: transparent;
+            /* border: 1px solid white; */
+            text-align: center;
+            width: 100%;
+            transition: all 0.3s;
+            white-space: nowrap;
+            
+        }
+
+        .btn-lg:hover {
+            /* background-color: #53c89b; */
+            color: #53c89b;
+        }
+
+        
+
+        .menu-button {
+            display: none;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+     
+
+
+
+
+        @media (max-width: 900px) {
+            .menu-content {
+                
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #11263d;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                align-items: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 30px; /* Increase spacing for better balance */
+            }
+
+            .menu-content.open {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links, .buttons {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .nav-links a, .btn-lg {
+                display: block;
+                width: 80%;
+                padding: 12px;
+                text-align: center;
+                border-radius: 5px;
+            }
+
+            .nav-links a {
+                margin-bottom: 10px;
+            }
+
+            .buttons {
+                margin-top: 15px;
+                width: 80%;
+            }
+
+            .btn-lg {
+                margin-bottom: 10px;
+                
+            }
+            }
+            .carousel-container {
+                margin-top: 0px;
+                max-height: 500px;
+                overflow: hidden;
+            }
+
+            .carousel-inner img {
+                object-fit: cover;
+                height: 350px;
+            }      
+
+            .carousel-inner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(42, 31, 56, 0.1));
+    pointer-events: none; /* Prevents it from blocking interactions */
+}
+
+.carousel-caption {
+                position: absolute;
+                top: 80%;
+                left: 20%;
+                transform: translate(-50%, -50%);
+    background: none(0, 0, 0, 0.5); /* Dark overlay for readability */
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    width: 80%;
+    z-index:2;
+}
+
+.carousel-caption h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.carousel-caption p {
+    font-size: 18px;
+}
+
+
+            
+
+            .info-section {
+                width: 80%;
+                margin: 50px auto;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .info-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                gap: 50px;
+                opacity: 0;
+                transform: translateY(50px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                filter: blur(10px); /* Initial blur */
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
+            }
+
+            /* When visible */
+            .info-container.show {
+                opacity: 10;
+                transform: translateY(0);
+                filter: blur(0px); /* Remove blur */
+            }
+
+
+            info-container.reverse {
+                flex-direction: row-reverse  !important;
+                align-items: center;
+                justify-content: space-between;
+                position: absolute;
+            }
+
+                /* Styling for text */
+            .info-text {
+                background: #11263d; /* Dark background for contrast */
+                color: white;
+                padding: 100px;
+                border-radius: 10px; /* Rounded corners */
+                flex: 1;
+                max-width: 500px;
+                position: relative;
+                z-index: 2; /* Ensures text stays above */
+                box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+                border: 2px solid white; /* Optional: Add a border */
+    }
+
+            .info-text h2 {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .info-text p {
+                font-size: 16px;
+                line-height: 1.5;
+                color: white;
+                margin-bottom: 10px;
+            }
+
+            .info-text a {
+                color: white;
+                text-decoration: none;
+            }
+
+            .info-text a:hover {
+                text-decoration: underline;
+            }
+
+
+        
+
+    /* Styling for images */
+
+    .info-image{
+        flex: 1;
+        position: relative;
+        max-width: 700px;
+    }
+    .info-image img {
+        width: 120%;
+        border-radius: 20px;
+        box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+        position: absolute; /* Allows image to overlap */
+        right: -120px; /* Move image over the text */
+        top: -160px; /* Adjust overlap position */
+        z-index: 3; /* Ensures it stays above */
+    }
+    .info-container:not(.reverse) .info-image img {
+        right: auto;  /* Reset right positioning */
+        left: -140px; /* Move image to the left */
+        
+    }
+
+
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .info-container {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .info-container.reverse {
+            flex-direction: column;
+        }
+
+        .info-image img {
+            max-width: 100%;
+        }
+    }
+            .footer {
+                background-color: #11263d;
+                padding: 40px 20px;
+                text-align: center;
+            }
+            .newsletter {
+                margin-bottom: 20px;
+            }
+
+            .newsletter h3{
+                color: white;
+            }
+
+            .newsletter p{
+                color: white;
+            }
+            .newsletter input {
+                padding: 10px;
+                width: 250px;
+                border: none;
+                border-radius: 5px;
+            }
+            .newsletter button {
+                padding: 10px 15px;
+                border: none;
+                background-color: #53c89b;
+                color: #11263d;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .links {
+                margin: 20px 0;
+            }
+            .links a {
+                color: white;
+                text-decoration: none;
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            .links p {
+                color: white;
+                
+            }
+            .social-icons, .app-links {
+                margin: 20px 0;
+                color: white;
+            }
+            .social-icons img, .app-links img {
+                width: 30px;
+                margin: 0 5px;
+            }
+            .policies {
+                margin-top: 20px;
+            }
+            .policies a {
+                color: white;
+                text-decoration: none;
+                margin: 0 5px;
+                font-size: 12px;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            .contact-us h3{
+                color: white;
+            }
+
+            .contact-us p{
+                color: white;
+            }
+            #aasha{
+                margin-left: -250px;
+            }
+            
+            
     </style>
 </head>
 <body>
     <!-- Welcome Statement -->
-    <section class="container my-4 text-center">
-        <h2>Welcome to Virtual Doctor Appointments</h2>
-        <p>Connecting you with top doctors for hassle-free online consultations.</p>
-    </section>
-    
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>Book Appointments with Top Doctors Anytime, Anywhere!</h1>
-        <p>Your health, our priority. AI-powered scheduling & real-time availability.</p>
+    <header>
+        <nav class="navbar">
+            <div class="logo-text">
+                <img src="{% static 'images/logo-removebg-preview.png'%}" alt="Logo" class="navbar-logo">
+                <h1><span class="white-text">AASHA</span> <span class="green-text">MedEase</span></h1>
+            </div>
+            
+            <div class="menu-content">
+                <div class="nav-links">
+                    <a href="about us.html">About Us</a>
+                    <a href="FAQ'S.html">FAQs</a>
+                    <a href="#footer">Contact Us</a>
+                </div>
+            </div>
+        
+            <div class="buttons">
 
 
-        <a href="{% url 'signupask' %}" class="btn btn-primary btn-lg">Sign Up</a>
-        <a href="{% url 'login' %}" class="btn btn-light btn-lg">Login</a>
+        <a href="{% url 'signupask' %}" class=" btn-lg">Sign Up</a>
+        <a href="{% url 'login' %}" class=" btn-lg">Login</a>
+
+    </div>
+        </nav>
+    </div>
     </header>
     
-    <!-- About Section -->
-    <section class="container my-5 text-center">
-        <h2>About Our Platform</h2>
-        <p>Experience hassle-free doctor appointments with AI-powered prioritization and real-time tracking.</p>
+                 <!-- Carousel Section -->
+    <section class="carousel-container">
+
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        
+            <div class="carousel-inner">
+                
+                <div class="carousel-item active">
+                    <img src="{% static 'images/Image 1jpg.jpg'%}" class="d-block w-100" alt="Image 1">
+                    <div class="carousel-caption">
+                        <h2>Welcome to AASHA MedEase</h2>
+                        <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/Image 2.jpg'%}" class="d-block w-100" alt="Image 2">
+                    <div class="carousel-caption">
+                        <h2>Welcome to AASHA MedEase</h2>
+                        <p>"Revolutionizing Healthcare, Inspiring Hope, Always."</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/Image 3.jpg'%}" class="d-block w-100" alt="Image 3">
+                    <div class="carousel-caption">
+                        <h2>Welcome to AASHA MedEase</h2>
+                        <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/Image 4.jpg'%}" class="d-block w-100" alt="Image 4">
+                    <div class="carousel-caption">
+                        <h2>Welcome to AASHA MedEase</h2>
+                        <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </section>
-    
-    <!-- Why Choose Us Section -->
-    <section class="container my-5">
-        <h2 class="text-center">Why Choose Us?</h2>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-calendar-check"></i>
-                <h5>Fast & Easy Appointments</h5>
+    <section class="info-section">
+        <!-- First Block -->
+        <div class="info-container">
+            <div class="info-text">
+                <h2>Why choose AASHA MedEase</h2>
+                <p><strong>The right answers the first time</strong></p>
+                <p>
+                Your health deserves the best. Choose Aasha Medease to get personalized, affordable, and accessible healthcare that empowers you to take control of your well-being. Start your journey with us today and experience healthcare that cares for you.
+                </p>
+            
             </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-clock-history"></i>
-                <h5>24/7 Availability</h5>
+            <div class="info-image">
+                <img src="{% static 'images/image 5.jpg'%}" alt="Doctor treating patient">
             </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-shield-lock"></i>
-                <h5>Secure & Private Consultations</h5>
+        </div>
+
+        <!-- Second Block -->
+        <div class="info-container reverse">
+
+            <div class="info-image " >
+                <img src="{% static 'images/Image 6.jpg'%}" alt="Mother with baby">
+            </div>
+            <div class="info-text">
+                <h2>World-class care for patients</h2>
+                <p>
+                    World-class healthcare should not be a privilege—it should be a right. At Aasha Medease, we bring top-tier medical expertise, advanced technology, and patient-focused care together to ensure that you receive the best treatment, every time.            </p>
             </div>
         </div>
     </section>
-    
-    <!-- How It Works Section -->
-    <section class="container my-5 text-center">
-        <h2>How It Works</h2>
-        <div class="row mt-4">
-            <div class="col-md-3">
-                <h5>1. Sign Up</h5>
+        
+        <!--Third block-->
+        <!--<div class="info-container">
+            <div class="info-text">
+                <h2>Healing starts here</h2>
+                <p><strong>The right answers the first time</strong></p>
+                <p>
+                    Effective treatment depends on getting the right diagnosis. Our experts diagnose and treat 
+                    the toughest medical challenges.
+                </p>
+            
+                <button class="info-btn">Why choose AASHA MedEase</button>
             </div>
-            <div class="col-md-3">
-                <h5>2. Choose Doctor</h5>
+            <div class="info-image" id="img1">
+                <img src="image 5.jpg" alt="Doctor treating patient">
             </div>
-            <div class="col-md-3">
-                <h5>3. Book Appointment</h5>
-            </div>
-            <div class="col-md-3">
-                <h5>4. Join Consultation</h5>
-            </div>
+        </div>-->
+
+        
+        
+        <!-- Footer -->
+    <div class="footer" id="footer">
+        <div class="newsletter">
+            
+            <p style="font-size: 12px; opacity: 0.8;">
+                By clicking Subscribe, I agree to the 
+                <a href="#">AASHA MedEase Terms & Conditions & Privacy Policy</a>
+            </p>
         </div>
-    </section>
+        <div class="social-icons">
+            <img src="{% static 'images/Facebook-icon.png'%}" alt="Facebook">
+            <img src="{% static 'images/twitter-icon.png'%}" alt="Twitter">
+            <img src="{% static 'images/instagram-icon.png'%}" alt="Instagram">
+        </div>
+        <div class="links">
+            <a href="#">Policies</a> | <a href="about us.html">About Us</a> | <a href="Feedback.html">Feedback</a> 
+        </div>
+        <div class="policies">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Editorial Policy</a>
+            <a href="#">Advertising Policy</a>
+            <a href="#">Correction Policy</a>
+            <a href="#">Terms of Use</a>
+        </div>
+        <div class="contact-us">
+            <h3>Contact Us</h3>
+            <p>Email: <a href="mailto:support@aashamedease.com">support@aashamedease.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const infoSections = document.querySelectorAll(".info-container");
     
-    <!-- Testimonials Section -->
-    <section class="container my-5 text-center">
-        <h2>What Our Users Say</h2>
-        <p>"This platform has made booking doctor appointments so much easier! Highly recommend." - Jane Doe</p>
-    </section>
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show"); // Add the show class when visible
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 20% of the section is visible
     
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3">
-        <p>&copy; 2025 Virtual Doctor Appointments | <a href="#" class="text-white">Privacy Policy</a></p>
-    </footer>
+            infoSections.forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("menu-content");
+    menu.classList.toggle("open"); // Adds or removes the 'open' class
+}
+</script>
+
+    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

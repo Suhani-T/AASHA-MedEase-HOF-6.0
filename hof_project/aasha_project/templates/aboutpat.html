@@ -1,0 +1,322 @@
+{ % load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AASHAMEDEASE</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+       
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    background: #11263d;
+   
+    border-bottom: 2px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    
+    z-index: 100;
+}
+
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 50%;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+   color: white;
+}
+.brandsubname{
+    color:#53c89b;
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white; 
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    /* background: #0077b6; */
+    color: #53c89b;
+}
+
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: #11263d;
+        padding: 12px;
+        border-radius: 10px;
+        text-align: center;
+        justify-content: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+
+#about {
+    /* background: #f4f8fb;  */
+    padding: 100px 20px 60px;
+    text-align: center;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #11263d; 
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+.container img {
+    width: 120px;
+    height: auto;
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}
+.timeline {
+    margin-top: 30px;
+    padding-left: 20px;
+    border-left: 4px solid #11263d;
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    /* background: #53c89b; */
+    background:#11263d ;
+    border-radius: 50%;
+    position: absolute;
+    left: -9px;
+    top: 5px;
+}
+
+.date {
+    font-weight: 600;
+    color: #11263d;
+    margin-bottom: 5px;
+}
+
+h3 {
+    /* color: #11263d; */
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+.team-grid {
+    display: flex;
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.team-member {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 280px;
+}
+
+.team-member h3 {
+    color: #11263d;
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    color: #444;
+    font-size: 1rem;
+}
+section {
+    margin-bottom: 60px;
+}
+    </style>
+</head>
+<body>
+
+  
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="{% static 'images/logo-removebg-preview.png'%}" alt="Logo" class="logo"> 
+            <span class="brand-name">AASHA <span class="brandsubname">MedEase</span> </span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="homepage2pat.html">Home</a></li>
+        </ul>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </nav>
+
+    <section id="about">
+        <div class="container">
+            <h2>About AASHA MedEase</h2>
+            <p>Aasha Medease is a beacon of hope for those seeking medical care. Our platform aims to provide accessible and affordable healthcare solutions, bridging the gap between patients and medical professionals. With Aasha Medease, we envision a future where everyone has the opportunity to receive quality medical attention, regardless of their geographical location or financial constraints. Our mission is to empower individuals to take control of their health, and our team is dedicated to making this vision a reality.</p>
+            <img src="{% static 'images/logo-removebg-preview.png'%}" alt="aasha">
+        </div>
+    </section>
+    <section id="journey">
+        <div class="container">
+            <h2>Our Journey</h2>
+            <p>Our journey started with a simple yet powerful vision—to revolutionize patient care using AI. As students, we knew this was not going to be easy, but we were ready to take on the challenge. From ideation to execution, we’ve given our all to bring AASHA MedEase to life.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="date">1st Jan - 19th Jan 2025</div>
+                    <h3>Turning Ideas into Solutions</h3>
+                    <p>We kicked off with deep discussions, brainstorming, and extensive research to identify the gaps in healthcare services. After countless debates, we crafted a well-defined problem statement and started shaping our AI-powered solution. Late-night meetings, endless revisions, and a relentless pursuit of perfection led to our final proposal submission.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="date">20th Jan - Now</div>
+                    <h3>Building the Future</h3>
+                    <p>With our concept validated, we dove headfirst into development. From designing a user-friendly interface to integrating AI algorithms, every step demanded intense focus and teamwork. Debugging errors, optimizing code, and refining our solution became our daily routine. The journey is still ongoing, and we are determined to deliver a groundbreaking solution that transforms patient experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="team">
+        <div class="container">
+            <h2>Meet Our Team</h2>
+            <p>Behind AASHA MedEase is a team of five dedicated students who have put their hearts and minds into making this project a reality. We come from different backgrounds but share a common goal—"to create a seamless healthcare experience using technology."</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Anushka Pankhuri</h3>
+                    <p>Backend Developer</p>
+                    <p>Anushka ensures the database and server-side functionalities are efficient, scalable, and optimized for performance.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Avani Munshi</h3>
+                    <p>Frontend Developer</p>
+                    <p>Avani focuses on responsive design, ensuring that our platform works flawlessly across different devices and screen sizes.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Suhani Thakur</h3>
+                    <p>Backend Developer</p>
+                    <p>Suhani works behind the scenes, building a robust backend that keeps everything running smoothly and securely.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Harshita Patel</h3>
+                    <p>Frontend Developer</p>
+                    <p>Harshita specializes in making the user experience smooth and intuitive. She’s always refining the interface to make it as seamless as possible.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Ana Joshi</h3>
+                    <p>Frontend Developer</p>
+                    <p>Ana brings creativity to life through engaging UI/UX designs. She ensures that AASHA MedEase is not only functional but also visually appealing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function toggleMenu() {
+            document.querySelector(".nav-links").classList.toggle("active");
+        }
+    </script>
+
+</body>
+</html>

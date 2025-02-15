@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseases</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .disease-list {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #11263d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #53c89b;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Diseases Starting with <span id="letter"></span></h1>
+    <div class="disease-list" id="disease-container">
+        <!-- Diseases will be loaded here -->
+    </div>
+
+    <button class="back-button" onclick="goBack()">Back</button>
+
+    <script>
+        const diseases = {
+            "A": ["Asthma", "Asthma is a chronic (long-term) condition that affects the airways in the lungs, making them inflamed, swollen, and narrowed. This can cause breathing difficulties, wheezing, coughing, chest tightness, and shortness of breath. Asthma symptoms can vary in severity and may be triggered by allergens (like pollen, dust mites, or pet dander), respiratory infections, cold air, smoke, strong odors, or physical activity.", "Symptoms", "Coughing, Wheezing, Shortness of Breath","Alzheimer's","Alzheimer’s disease is a progressive brain disorder that leads to memory loss, cognitive decline, and difficulty with daily tasks. It is the most common cause of dementia, a general term for conditions that cause impaired thinking and memory. Alzheimer’s primarily affects older adults, but early-onset cases can occur before age 65.","Symptoms" , "Memory loss, Confusion, Mood swings"],
+            "B": ["Bronchitis - Symptoms: Coughing, Fatigue, Chest discomfort", "Botulism - Symptoms: Weak muscles, Difficulty breathing, Paralysis"],
+            "C": ["Cancer - Symptoms: Unexplained weight loss, Fatigue, Lumps", "Chickenpox - Symptoms: Itchy rash, Fever, Fatigue"],
+            "D": ["Diabetes - Symptoms: Frequent urination, Increased thirst, Fatigue"],
+            
+        };
+
+        function loadDiseases() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const letter = urlParams.get("letter");
+            document.getElementById("letter").innerText = letter;
+
+            const container = document.getElementById("disease-container");
+            container.innerHTML = "";
+
+            if (diseases[letter]) {
+                diseases[letter].forEach(disease => {
+                    const diseaseItem = document.createElement("p");
+                    diseaseItem.textContent = disease;
+                    container.appendChild(diseaseItem);
+                });
+            } else {
+                container.innerHTML = "<p>No diseases found for this letter.</p>";
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        window.onload = loadDiseases;
+    </script>
+
+</body>
+</html>

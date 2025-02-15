@@ -1,3 +1,4 @@
+{ % load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +26,11 @@
             margin-left: 15px;
         }
         .card-header {
-            background-color: #007bff;
+            background-color: #11263d;
             color: white;
         }
         .navbar {
-            background-color: #007bff;
+            background-color: #11263d;
         }
         .navbar-brand {
             color: white;
@@ -47,7 +48,7 @@
         height: 45px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #007bff;
+        border: 2px solid #11263d;
         }
         #profile-pic img:hover{
             cursor: pointer;
@@ -72,13 +73,97 @@
             background-color: #bbb;
             cursor: pointer;
         }
-        
+        .sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    box-shadow:0px 5px 15px 4px rgb(191, 189, 189);
+    /* box-shadow:-5px 0px 15px 4px rgb(183, 182, 182); */
+}
+
+.sidebar h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #11263d;
+    text-align: center;
+}
+
+.sidebar .list-group-item {
+    text-align: center;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    background-color:#f0f0f0;
+    border: none;  /* Removes default border */
+    border-bottom: 1px solid #d3d2d2; /* Adds border only at the bottom */
+}
+
+/* Remove border from the last item to avoid extra line at the end */
+.sidebar .list-group-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar .list-group-item a {
+    text-decoration: none;
+    color: #11263d;
+    display: block;
+}
+
+.sidebar .list-group-item:hover {
+    background-color: #11263d;
+}
+
+.sidebar .list-group-item:hover a {
+    color: #ffffff;
+}
+.nav-link{
+    color:white !important;
+}
+.nav-link:hover{
+    color:#53c89b !important;
+}
+.brand-name span{
+            color:#53c89b !important;
+        }
+        .brand-name{
+            color:white !important;
+            font-size: 1.2rem;
+        font-weight: 600;
+        }
+        .nav-link{
+            color:white !important;
+        }
+        .nav-link:hover{
+            color:#53c89b !important;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 12px;
+            border-radius: 50%;
+        }
+        .d-flex .btn{
+background: #11263d !important;
+color: #ffffff !important;
+        }
+        .d-flex .btn:hover{
+            color: #53c89b !important;
+            background: #11263d !important;
+        }
+
+        .card{
+            box-shadow:2px 2px 15px 4px rgb(191, 189, 189);
+        }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">AASHA MedEase</a>
             <ul class="navbar-nav ms-auto align-items-center">
@@ -90,9 +175,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Logout</a>
-                </li>
+                </li> -->
                 <!-- Profile Icon -->
-                <li class="nav-item ms-3">
+                <!-- <li class="nav-item ms-3">
                     <a href="{% url 'patient_profile_actual' request.user.patient_profile.pk %}">
                         {% if user.patient_profile.profile_picture %}
                             <div id="profile-pic">
@@ -100,21 +185,59 @@
                             </div>
                         {% else %}
                             <div id="profile_picture">
-                                <i class="fas fa-user"></i> <!-- User Icon -->
-                            </div>
-                        {% endif %}
+                                <i class="fas fa-user"></i> <!User Icon -->
+                            <!-- </div> -->
+                        <!-- {% endif %}
                     </a>
                 </li>
             </ul>
         </div>
+    </nav> --> 
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">AASHA <span></span>MedEase</a> -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{% static 'images/logo-removebg-preview.png'%}" alt="Logo" class="logo"> 
+                <span class="brand-name">AASHA <span style="color: #53c89b;">MedEase</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homepage2pat.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutpat.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                    <!-- Profile Icon -->
+                    <li class="nav-item ms-3">
+                        <a href="{% url 'patient_profile_actual' request.user.patient_profile.pk %}">
+                            {% if user.patient_profile.profile_picture %}
+                                <div id="profile-pic">
+                                    <img src="{{ user.patient_profile.profile_picture.url }}" alt="Profile Picture">
+                                </div>
+                            {% else %}
+                                <div id="profile_picture">
+                                    <i class="fas fa-user"></i> <!-- User Icon -->
+                                </div>
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-
     <div class="container mt-4">
         <!-- Sidebar -->
         <div class="sidebar">
             <h5>Patient Dashboard</h5>
             <ul class="list-group">
-                <li class="list-group-item"><a href="{% url 'patient_profile' %}">My Profile</a></li>
+                <!-- <li class="list-group-item"><a href="{% url 'patient_profile' %}">My Profile</a></li> -->
                 <li class="list-group-item"><a href="#">Appointment History</a></li>
                 <li class="list-group-item"><a href="#">Settings</a></li>
                 <li class="list-group-item"><a href="#">Help</a></li>

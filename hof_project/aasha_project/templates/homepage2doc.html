@@ -1,3 +1,4 @@
+{ % load static % }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
+      *{
+            margin: 0;
+            padding: 0;
+        }
         .hero {
             background: url('https://source.unsplash.com/1600x900/?medical,hospital') no-repeat center center/cover;
             color: white;
@@ -15,7 +20,7 @@
         }
         .feature-icon {
             font-size: 2rem;
-            color: #0d6efd;
+            /* color: #0d6efd; */
         }
         .logo {
             display: flex;
@@ -27,23 +32,286 @@
             width: 80px;
             height: 80px;
         }
+        
+        .navbar {
+            background-color: #11263d;
+            padding: 4px 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .brand-text span {
+            color: #53c89b;
+        }
+        .brand-text:hover{
+            color:#fff;
+            /* transition: smooth; */
+        }
+        .navbar-nav .nav-item {
+            margin-left: 15px;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #53c89b !important;
+        }
+        .navbar-toggler {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .btn-custom {
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            /* border-radius: 8px; */
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .btn-dashboard {
+            /* background-color: #28a745; */
+            color: white;
+        }
+        .btn-dashboard:hover {
+            /* background-color: #218838; */
+            color: #53c89b;
+        }
+        .btn-logout {
+            /* background-color: #dc3545; */
+            color: white;
+        }
+        .btn-logout:hover {
+            /* background-color: #c82333; */
+            color: #53c89b
+        }
+        @media (max-width: 992px) {
+            .navbar-nav {
+                text-align: center;
+                width: 100%;
+            }
+            .navbar-collapse {
+                background: #11263d;
+                padding: 10px;
+                border-radius: 8px;
+            }
+            .navbar-nav .nav-item {
+                margin: 10px 0;
+            }
+        }
+        
+        .carousel-inner img {
+            height: 60vh;
+            object-fit: cover;
+        }
+        .container7 {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 15px;
+            background: white;
+            /* border-radius: 15px; */
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .main-content {
+            flex: 2;
+            margin-right: 15px;
+        }
+        .latest-news {
+            flex: 1;
+            font-weight: bolder;
+        }
+        .news-card {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+        }
+        .news-card:hover {
+            transform: scale(1.03);
+        }
+        img {
+            width: 100%;
+            max-height: 424px;
+            border-radius: 10px;
+        }
+       .container7 h2 {
+            font-size: 1.6em;
+            margin-top: 10px;
+            color: #11263d;
+            text-align: center;
+            font-weight: bold;
+        }
+        .latest-news h3 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #11263d;
+            text-align: center;
+            font-weight: bold;
+        }
+        .latest-news p {
+            font-size: 0.95em;
+            color: #555;
+        }
+        .header7 {
+            margin-top: 50px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 50px;
+            text-align: center;
+            background: #11263d;
+            color: white;
+            padding: 15px;
+            font-size: 1.6em;
+            font-weight: bold;
+            /* border-radius: 10px; */
+        }
+        .header7 span{
+            color: #53c89b;
+        }
+        @media (max-width: 768px) {
+            .container7 {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .main-content, .latest-news {
+                flex: 1;
+                margin-right: 0;
+                text-align: center;
+            }
+            .news-card {
+                padding: 10px;
+            }
+           .container7 h2 {
+                font-size: 1.4em;
+            }
+            .latest-news h3 {
+                font-size: 1.1em;
+            }
+            img {
+                max-height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+        <div class="navbar-brand">  
+                <img src="{% static 'images/logo-removebg-preview.png'%}" alt="AASHA Logo">
+                <span class="brand-text">AASHA <span>MedEase</span></span>
+            </div> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a href="aboutdoc.html" class="btn btn-custom btn-logout">
+                            About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'doctor_dashboard' %}" class="btn btn-custom btn-dashboard">
+                            <i class="bi bi-speedometer2"></i> Go to Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'homepage' %}" class="btn btn-custom btn-logout">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{% static 'images/doctorimg1.jpg'%}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/doctorimg2.jpg'%}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{% static 'images/doctorimg3.jpg'%}" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="header7">AASHA <span>MedEase</span>
+         - Empowering Doctors with Smart Healthcare Solutions</div>
+      <div class="container7">
+        <div class="main-content">
+            <img src="{% static 'images/doctorimg4.avif'%}" alt="Doctor Dashboard">
+            <div class="news-card">
+                <h2>Efficient Healthcare Management</h2>
+                <p>Streamline your practice with AI-powered tools and real-time patient management.</p>
+            </div>
+        </div>
+        <div class="latest-news">
+            <h2>Doctor's Portal</h2>
+            <div class="news-card">
+                <h3>Upcoming Appointments</h3>
+                <p>View and manage your scheduled consultations.</p>
+            </div>
+            <div class="news-card">
+                <h3>Patient Records</h3>
+                <p>Access and update patient medical history securely.</p>
+            </div>
+            <div class="news-card">
+                <h3>AI Diagnosis Assistance</h3>
+                <p>Utilize AI insights for better diagnosis and treatment.</p>
+            </div>
+            <div class="news-card">
+                <h3>Billing & Payments</h3>
+                <p>Manage payments and invoices with ease.</p>
+            </div>
+        </div>
+    </div>
+    
     <!-- Logo -->
-    <div class="logo">
+    <!-- <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/3039/3039436.png" alt="Logo">
         <h1 class="ms-3">Virtual Doctor</h1>
-    </div>
+    </div> -->
 
     <!-- Welcome Statement -->
-    <section class="container my-4 text-center">
+    <!-- <section class="container my-4 text-center">
         <h2>Welcome, Doctor!</h2>
         <p>Manage your appointments, patients, and medical records with ease.</p>
-    </section>
+    </section> -->
     
     <!-- Hero Section -->
-    <header class="hero">
+    <!-- <header class="hero">
         <h1>Your Dashboard</h1>
         <p>Streamline your practice with AI-powered tools and real-time patient management.</p>
         <a href="{% url 'doctor_dashboard' %}" class="btn btn-success btn-lg">
@@ -57,46 +325,10 @@
             </button>
         </form>
         
-    </header>
+    </header> -->
 
     <!-- Dashboard Features -->
-    <section class="container my-5">
-        <h2 class="text-center">Doctor's Portal</h2>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-calendar-check"></i>
-                <h5>Upcoming Appointments</h5>
-                <p>View and manage your scheduled consultations.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-file-medical"></i>
-                <h5>Patient Records</h5>
-                <p>Access and update patient medical history securely.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-chat-dots"></i>
-                <h5>Messaging System</h5>
-                <p>Communicate with patients in real time.</p>
-            </div>
-        </div>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-prescription"></i>
-                <h5>Prescriptions</h5>
-                <p>Generate and send prescriptions online.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-clipboard-pulse"></i>
-                <h5>AI Diagnosis Assistance</h5>
-                <p>Utilize AI insights for better diagnosis and treatment.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-cash-stack"></i>
-                <h5>Billing & Payments</h5>
-                <p>Manage payments and invoices with ease.</p>
-            </div>
-        </div>
-    </section>
+   
     
     <!-- Footer -->
     <footer class="bg-dark text-white text-center p-3">
