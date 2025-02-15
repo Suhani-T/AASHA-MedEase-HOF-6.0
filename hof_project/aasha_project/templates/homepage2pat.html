@@ -46,7 +46,7 @@
 }
 
 .result-item:hover {
-    background-color: #11263d; /* Light gray hover effect */
+    background-color: #d9d9d9; /* Light gray hover effect */
 }
 
         .navbar {
@@ -567,6 +567,12 @@
             color: white;
             text-align: right;
         }
+        .results{
+            z-index:2;
+        }
+        /* .results:hover{
+            background-color:rgb(221, 221, 221);
+        } */
     </style>
 </head>
 <body>
@@ -657,19 +663,6 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div>
-        <!-- Find Doctors Section--> 
-         <div class="doctor-container">
-            <h2>Find your Doctor</h2>
-            <h5>Finding the right doctor has never been easier! </h5>
-        <div class="container mt-4" id="search_doctor">
-            <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
-            <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
-            <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
-        </div>
-         </div>
-
-    </header>
 
             <!--disease-->
 
@@ -706,6 +699,21 @@
         <button onclick="openDiseasePage('Z')">Z</button>
     </div>
     </div>
+
+</div>
+<!-- Find Doctors Section--> 
+ <div class="doctor-container">
+    <h2>Find your Doctor</h2>
+    <h5>Finding the right doctor has never been easier! </h5>
+
+    <div class="container doc_input" id="search_doctor">
+        <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
+        <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
+        <div id="results" class="mt-2 bg-light border rounded shadow p-2 results" style="display: none; width:100% ; max-width:400px;"></div>
+    </div>
+</div>
+
+</div>
 
     
     <!-- Footer -->

@@ -228,9 +228,9 @@
                 gap: 50px;
                 opacity: 0;
                 transform: translateY(50px);
-                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+                transition: opacity 0.4s ease-out, transform 0.8s ease-out;
                 filter: blur(10px); /* Initial blur */
-                transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
+                transition: opacity 0.4s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
             }
 
             /* When visible */
@@ -568,7 +568,7 @@
                         entry.target.classList.add("show"); // Add the show class when visible
                     }
                 });
-            }, { threshold: 0.5 }); // Trigger when 20% of the section is visible
+            }, { threshold: 0.2 }); // Trigger when 20% of the section is visible
     
             infoSections.forEach((section) => {
                 observer.observe(section);
