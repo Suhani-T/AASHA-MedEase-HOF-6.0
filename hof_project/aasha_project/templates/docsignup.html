@@ -10,6 +10,12 @@
             max-width: 600px;
             margin: auto;
             margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .create-profile-button{
+            background-color:#11263d;
+            color:white;
+            width:40rem;
         }
     </style>
 </head>
@@ -158,13 +164,13 @@
                     <input type="file" name="medical_license" class="form-control" accept=".jpg,.jpeg,.png,.pdf" required>
                 </div>
 
-                <p class="text-center">Additional Information (Optional)</p>
+                <p class="text-center">Step 5: Information (Optional)</p>
                 <div class="mb-3">
                     <label class="form-label">Profile Picture</label>
                     <input type="file" class="form-control" name="profile_picture">
                 </div>
 
-                <p class="text-center">Step 5: Login Credentials</p>
+                <p class="text-center">Step 6: Login Credentials</p>
                 <div class="mb-3">
                     <label class="form-label">Username</label>
                     <input type="text" name="username" class="form-control" required>
@@ -181,7 +187,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-success">Create Profile</button>
+                    <button type="submit" class="btn create-profile-button">Create Profile</button>
                 </div>
             </form>
         </div>
