@@ -7,27 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <style>
-        .hero {
+                        .hero {
             background: url('https://source.unsplash.com/1600x900/?healthcare,hospital') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 100px 20px;
         }
-        .feature-icon {
-            font-size: 2rem;
-            color: #0d6efd;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .logo img {
-            width: 80px;
-            height: 80px;
-        }
-
+       
         #search_doctor{
             display:flex;
             justify-content:center;
@@ -47,6 +33,7 @@
         .result-item:hover {
             background-color: #f8f9fa; /* Light gray hover effect */
         }
+
 
         .navbar {
             display: flex;
@@ -499,86 +486,225 @@
     </style>
 </head>
 <body>
-    <!-- Logo -->
-    <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/3039/3039436.png" alt="Logo">
-        <h1 class="ms-3">Virtual Doctor</h1>
-    </div>
+  
 
-    <!-- Welcome Statement -->
-    <section class="container my-4 text-center">
-        <h2>Welcome, Patient!</h2>
-        <p>Manage your health, appointments, and medical records conveniently.</p>
-    </section>
+ 
     
     <!-- Hero Section -->
-    <header class="hero">
-        <h1>Your Health, Our Priority</h1>
-        <p>Book appointments, check prescriptions, and track your health easily.</p>
-        <a href="{% url 'patient_dashboard' %}" class="btn btn-success btn-lg">
+    <header>
+        <nav class="navbar">
+            <div class="logo-text">
+                <img src="logo-removebg-preview.png" alt="Logo" class="navbar-logo">
+                <h1><span class="white-text">AASHA</span> <span class="green-text">MedEase</span></h1>
+            </div>
+            
+            <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+            
+            <div class="menu-content" id="menu-content">
+                <div class="nav-links">
+                    <a href="about us.html">About Us</a>
+                    <a href="FAQ'S.html">FAQs</a>
+                    <a href="#footer">Contact Us</a>
+                </div>
+                <div class="buttons">
+        <a href="{% url 'patient_dashboard' %}" class="btn-lg">
             <i class="bi bi-speedometer2"></i> Go to Dashboard
         </a>
         
         <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger btn-lg">
+            <button type="submit" class=" btn-lg">
                 <i class="bi bi-box-arrow-right"></i>Logout
             </button>
         </form>
+    </div>
+</div>
+</header>
 
-        <!-- Find Doctors Section --> 
+
+           <!-- Welcome Statement -->
+           <section class="greet">
+        <h2>Welcome, Patient!</h2>
+        <p>Manage your health, appointments, and medical records conveniently.</p>
+    </section>
+
+ <!-- Carousel Section -->
+ <section class="carousel-container">
+
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    
+        <div class="carousel-inner">
+            
+            <div class="carousel-item active">
+                <img src="Image 1jpg.jpg" class="d-block w-100" alt="Image 1">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Image 2.jpg" class="d-block w-100" alt="Image 2">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Image 3.jpg" class="d-block w-100" alt="Image 3">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Image 4.jpg" class="d-block w-100" alt="Image 4">
+                <div class="carousel-caption">
+                    <h2>Welcome to AASHA MedEase</h2>
+                    <p>"Revolutionizing Healthcare, Inspiring Hope, Always.".</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+        <!-- Find Doctors Section 
         <div class="container mt-4" id="search_doctor">
             <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
             <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
             <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
         </div>
 
-    </header>
+    </header>-->
 
-    <!-- Dashboard Features -->
-    <section class="container my-5">
-        <h2 class="text-center">Patient Portal</h2>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-calendar-check"></i>
-                <h5>Book Appointments</h5>
-                <p>Schedule consultations with your preferred doctor.</p>
+            <!--disease-->
+
+    <div class="alphabet-container"></div>
+    <h2> Search Doctor</h2>
+        <div class="container mt-4" id="search_doctor">
+            <label for="search" class="form-label fw-bold text-white">Find Doctors:</label>
+            <input type="text" id="search" class="form-control" placeholder="Search for doctors...">
+            <div id="results" class="mt-2 bg-light border rounded shadow p-2" style="display: none; width:100% ; max-width:400px;"></div>
+        </div>
+    <h2> Search Diseases by letter </h2>
+    <div class="alphabet-buttons">
+        <button onclick="openDiseasePage('A')">A</button>
+        <button onclick="openDiseasePage('B')">B</button>
+        <button onclick="openDiseasePage('C')">C</button>
+        <button onclick="openDiseasePage('D')">D</button>
+        <button onclick="openDiseasePage('E')">E</button>
+        <button onclick="openDiseasePage('F')">F</button>
+        <button onclick="openDiseasePage('G')">G</button>
+        <button onclick="openDiseasePage('H')">H</button>
+        <button onclick="openDiseasePage('I')">I</button>
+        <button onclick="openDiseasePage('J')">J</button>
+        <button onclick="openDiseasePage('K')">K</button>
+        <button onclick="openDiseasePage('L')">L</button>
+        <button onclick="openDiseasePage('M')">M</button>
+        <button onclick="openDiseasePage('N')">N</button>
+        <button onclick="openDiseasePage('O')">O</button>
+        <button onclick="openDiseasePage('P')">P</button>
+        <button onclick="openDiseasePage('Q')">Q</button>
+        <button onclick="openDiseasePage('R')">R</button>
+        <button onclick="openDiseasePage('S')">S</button>
+        <button onclick="openDiseasePage('T')">T</button>
+        <button onclick="openDiseasePage('U')">U</button>
+        <button onclick="openDiseasePage('V')">V</button>
+        <button onclick="openDiseasePage('W')">W</button>
+        <button onclick="openDiseasePage('X')">X</button>
+        <button onclick="openDiseasePage('Y')">Y</button>
+        <button onclick="openDiseasePage('Z')">Z</button>
+    </div>
+    </div>
+
+    
+    <!-- Footer -->
+     <!--Information-->
+     <section class="info-section">
+        <!-- First Block -->
+        <div class="info-container">
+            <div class="info-text">
+                <h2>Why choose AASHA MedEase</h2>
+                <p><strong>The right answers the first time</strong></p>
+                <p>
+                Your health deserves the best. Choose Aasha Medease to get personalized, affordable, and accessible healthcare that empowers you to take control of your well-being. Start your journey with us today and experience healthcare that cares for you.
+                </p>
+            
             </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-file-medical"></i>
-                <h5>Medical Records</h5>
-                <p>Access your health history and lab reports securely.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-capsule"></i>
-                <h5>Prescriptions</h5>
-                <p>View and download your prescribed medications.</p>
+            <div class="info-image">
+                <img src="image 5.jpg" alt="Doctor treating patient">
             </div>
         </div>
-        <div class="row text-center mt-4">
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-clipboard-pulse"></i>
-                <h5>AI Symptom Checker</h5>
-                <p>Get AI-powered health insights based on symptoms.</p>
+
+        <!-- Second Block -->
+        <div class="info-container reverse">
+
+            <div class="info-image " >
+                <img src="Image 6.jpg" alt="Mother with baby">
             </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-chat-dots"></i>
-                <h5>Doctor Communication</h5>
-                <p>Chat with your doctor for follow-ups and consultations.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="feature-icon bi bi-cash-stack"></i>
-                <h5>Billing & Payments</h5>
-                <p>View invoices and manage medical expenses.</p>
+            <div class="info-text">
+                <h2>World-class care for patients</h2>
+                <p>
+                    World-class healthcare should not be a privilege—it should be a right. At Aasha Medease, we bring top-tier medical expertise, advanced technology, and patient-focused care together to ensure that you receive the best treatment, every time.            </p>
             </div>
         </div>
     </section>
+
+   <!--Chatbot-->
+    <div class="chatbot-container">
+        <div class="chatbot-body" id="chatbot-body">
+            <div id="chat-messages"></div>
+            <div class="chatbot-footer">
+                <input type="text" id="user-input" placeholder="Type a question..." onkeydown="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+        <button class="chatbot-button" onclick="toggleChatbot()">
+            <img src="icon.png" alt="Chat">
+        </button>
+    </div>
+    <!--Footer-->
+    <div class="footer" id="footer">
+    <div class="newsletter">
+        
+        <p style="font-size: 12px; opacity: 0.8;">
+            By clicking Subscribe, I agree to the 
+            <a href="#">AASHA MedEase Terms & Conditions & Privacy Policy</a>
+        </p>
+    </div>
+    <div class="social-icons">
+        <img src="Facebook-icon.png" alt="Facebook">
+        <img src="twitter-icon.png" alt="Twitter">
+        <img src="instagram-icon.png" alt="Instagram">
+    </div>
+    <div class="links">
+        <a href="#">Policies</a> | <a href="about us.html">About Us</a> | <a href="Feedback.html">Feedback</a> 
+    </div>
+    <div class="policies">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Editorial Policy</a>
+        <a href="#">Advertising Policy</a>
+        <a href="#">Correction Policy</a>
+        <a href="#">Terms of Use</a>
+    </div>
+    <div class="contact-us">
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:support@aashamedease.com">support@aashamedease.com</a></p>
+    </div>
+</div>
+<script>
+
+        function toggleMenu() {
+            document.getElementById("menu-content").classList.toggle("open");
+        }
     
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center p-3">
-        <p>&copy; 2025 Virtual Doctor Appointments | <a href="#" class="text-white">Privacy Policy</a></p>
-    </footer>
-    
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.getElementById("search").addEventListener("input", function() {
@@ -615,6 +741,71 @@
                 });
         });
     </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const infoSections = document.querySelectorAll(".info-container");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show"); // Add the show class when visible
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 20% of the section is visible
+
+        infoSections.forEach((section) => {
+            observer.observe(section);
+        });
+    });
+</script>
+
+</script>
+
+<script>
+const qaPairs = {
+"What are the signs of a heart attack?": "The signs of a heart attack can include chest pain, discomfort in the upper body (arms, neck, jaw), shortness of breath, cold sweat, nausea, or lightheadedness. If you experience these symptoms, seek medical help immediately.",
+"What does diabetes feel like?": "Diabetes can cause symptoms like increased thirst, frequent urination, fatigue, blurred vision, and slow-healing wounds. It can also lead to low blood sugar symptoms like shakiness, sweating, dizziness, and hunger.",
+"How do I treat a cold or flu?": "To treat a cold or flu, rest, stay hydrated, and use over-the-counter medications like pain relievers, decongestants, or cough syrup. Steam inhalation or saltwater gargles can soothe a sore throat and congestion.",
+"What are the early symptoms of cancer?": "Early symptoms of cancer can include unexplained weight loss, persistent pain, unexplained fatigue, skin changes, lumps or thickening, and difficulty swallowing. It's important to see a doctor for further evaluation.",
+"Can you explain high blood pressure?": "High blood pressure (hypertension) occurs when the blood pressure in your arteries is consistently too high. It may cause symptoms like headaches, dizziness, and shortness of breath. Treatment includes lifestyle changes and medications to manage blood pressure.",
+"What are the symptoms of asthma?": "Asthma symptoms include shortness of breath, wheezing (a whistling sound when breathing), chest tightness, and persistent cough, especially at night or during physical activity. Asthma attacks can be triggered by allergens, cold air, or exercise.",
+"How can I manage chronic pain?": "Chronic pain management can include medications, physical therapy, cognitive behavioral therapy (CBT), alternative therapies like acupuncture, and lifestyle changes such as regular exercise and stress management.",
+"What is rheumatoid arthritis and how is it treated?": "Rheumatoid arthritis (RA) is an autoimmune disease where the immune system attacks the joints, leading to pain, swelling, and stiffness. Treatment includes medications like DMARDs, biologic treatments, pain relief, and physical therapy.",
+"What is the difference between Type 1 and Type 2 diabetes?": "Type 1 diabetes is an autoimmune condition where the body doesn't produce insulin. Type 2 diabetes occurs when the body doesn't use insulin properly or doesn't make enough. Both types require management, but Type 1 typically requires insulin injections, while Type 2 can often be managed through diet and exercise.",
+"What are the symptoms of COVID-19?": "Common symptoms of COVID-19 include fever, cough, shortness of breath, fatigue, muscle aches, sore throat, loss of taste or smell, congestion, and runny nose. If you experience symptoms or suspect exposure, get tested and follow health guidelines."
+};
+
+    function toggleChatbot() {
+        const chatbotBody = document.getElementById("chatbot-body");
+        chatbotBody.style.display = chatbotBody.style.display === "block" ? "none" : "block";
+    }
+
+    function sendMessage() {
+        const inputField = document.getElementById("user-input");
+        const messageText = inputField.value.trim();
+        if (!messageText) return;
+
+        displayMessage(messageText, "user");
+        const response = qaPairs[messageText] || "I'm not sure about that. Can you rephrase?";
+        setTimeout(() => displayMessage(response, "bot"), 500);
+        inputField.value = "";
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    function displayMessage(text, sender) {
+        const chatMessages = document.getElementById("chat-messages");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender === "bot" ? "bot-message" : "user-message");
+        messageDiv.innerText = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+</script>
 
 </body>
 </html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <title>COVID Vaccination FAQ's</title>
+    <style>
+        body {
+            /* font-family: Arial, sans-serif; */
+            font-family: "Josefin Sans", serif;
+            font-optical-sizing: auto;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #579cc4;
+        }
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .faq {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .question {
+            font-weight: bold;
+            color: #2980b9;
+            cursor: pointer;
+        }
+        .answer {
+            display: none;
+            margin-top: 10px;
+            color: #34495e;
+        }
+        .question:hover {
+            color: #3498db;
+        }
+        .ask-question {
+            margin-top: 30px;
+            margin-right: 50px;
+            margin-left: 50px;
+            padding: 10px;
+            border: 1px solid #2c003f;
+            border-radius: 8px;
+        }
+        .ask-question input, .ask-question textarea {
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .ask-question button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color:#3b80a8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .ask-question button:hover {
+            background-color: rgb(46, 113, 176);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AASHA MedEase FAQ's</h1>
+    <div class="faq-container">
+
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">What is AASHA MedEase?</div>
+            <div class="answer">AASHA MedEase is an AI-powered platform designed to reduce patient waiting times in hospitals by optimizing appointment scheduling and streamlining medical processes.</div>
+        </div>
+
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">How does AASHA MedEase help in reducing hospital wait times?</div>
+            <div class="answer">AASHA MedEase uses AI algorithms to analyze patient data, predict peak hours, and schedule appointments efficiently, ensuring minimal waiting time for patients.</div>
+        </div>
+
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">Who can use AASHA MedEase?</div>
+            <div class="answer">Hospitals, clinics, and healthcare providers can integrate AASHA MedEase to improve their patient flow. Patients can also use it to book appointments and receive real-time updates.</div>
+        </div>
+
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">Is AASHA MedEase safe and reliable?</div>
+            <div class="answer">Yes, AASHA MedEase is built with secure data management and AI-driven accuracy to ensure patient information is protected and appointments are scheduled efficiently.</div>
+        </div>
+
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">How can I register on AASHA MedEase?</div>
+            <div class="answer">You can register on the AASHA MedEase platform through the official website by providing your basic details and medical history.</div>
+        </div>
+
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">What documents do I need for booking an appointment through AASHA MedEase?</div>
+            <div class="answer">Depending on the hospital, you may need an Aadhaar card, hospital registration number, or previous medical records for verification.</div>
+        </div>
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">Can I book an appointment for someone else using AASHA MedEase?</div>
+            <div class="answer">Yes, you can book an appointment for family members or friends by entering their details while scheduling through the platform.</div>
+        </div>
+        <div class="faq">
+            <div class="question" onclick="toggleAnswer(this)">Does AASHA MedEase provide real-time appointment updates?</div>
+            <div class="answer">Yes, AASHA MedEase sends real-time updates and notifications about appointment status, estimated waiting time, and any changes to the schedule.</div>
+        </div>
+
+<div class="faq">
+    <div class="question" onclick="toggleAnswer(this)">Is AASHA MedEase available in all hospitals?</div>
+    <div class="answer">AASHA MedEase is currently being integrated into selected hospitals. You can check the availability on our official website or app.</div>
+</div>
+    </div>
+
+    <!--<div class="ask-question">
+        <h2>Ask Your Question</h2>
+        <input type="text" id="userQuestion" placeholder="Type your question here..." required>
+        <button onclick="submitQuestion()">Submit</button>
+    </div>-->
+
+    <script>
+        function toggleAnswer(questionElement) {
+            const answerElement = questionElement.nextElementSibling;
+            answerElement.style.display = answerElement.style.display === "block" ? "none" : "block";
+        }
+
+        function submitQuestion() {
+            const userQuestion = document.getElementById('userQuestion').value;
+            if (userQuestion) {
+                alert("Thank you for your question! We will review it shortly.");
+                document.getElementById('userQuestion').value = ''; // Clear the input field
+            } else {
+                alert("Please enter a question before submitting.");
+            }
+        }
+    </script>
+
+</body>
+</html>
