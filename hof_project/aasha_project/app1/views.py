@@ -484,3 +484,26 @@ def mark_appointment_completed(request, appointment_id):
     appointment.save()
 
     return JsonResponse({'success': True, 'completed': appointment.is_completed})
+
+
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .chatbot import get_chatbot_response  # Import chatbot function
+
+@csrf_exempt  # Disable CSRF for simplicity (use authentication in production)
+def chatbot_api(request):
+    if request.method == "GET":
+        query = request.GET.get("query", "")
+        if not query:
+            return JsonResponse({"error": "No query provided"}, status=400)
+        
+        response = get_chatbot_response(query)
+        return JsonResponse({"response": response})
+    
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+def diseases_view(request):
+    letter = request.GET.get('letter', '')  # Get 'letter' from URL
+    return render(request, 'disease.html', {'letter': letter})
+

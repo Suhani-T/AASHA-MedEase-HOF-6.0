@@ -220,29 +220,61 @@
     pointer-events: none; /* Prevents it from blocking interactions */
 }
                 
-            .carousel-caption {
-                position: absolute;
-                top: 80%;
-                left: 20%;
-                transform: translate(-50%, -50%);
-    background: none(0, 0, 0, 0.5); /* Dark overlay for readability */
-    padding: 15px;
-    border-radius: 10px;
-    color: white;
-    width: 80%;
-    z-index:2;
-}
+    .carousel-caption {
+        position: absolute;
+        top: 80%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        background: none(0, 0, 0, 0.5); /* Dark overlay for readability */
+        padding: 15px;
+        border-radius: 10px;
+        color: white;
+        width: 80%;
+        z-index:2;
+    }
 
-.carousel-caption h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+    .carousel-caption h2 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-.carousel-caption p {
-    font-size: 18px;
-}
-            
+        .carousel-caption p {
+            font-size: 18px;
+        }
+
+        /*.carousel-control-prev, .carousel-control-next {
+            width: 30px; 
+            height: 30px; 
+            position:absolute;
+            top: 50%;  
+            transform: translateY(-50%); 
+            z-index: 5;
+        }  */
+
+        .carousel-container {
+            position: relative;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute; /* Ensures they are positioned relative to the carousel */
+            top: 27%; /* Moves them to the middle */
+            transform: translateY(-50%); /* Adjusts for exact centering */
+            width: auto; /* Allows natural width */
+            height: auto; /* Keeps the natural height */
+            z-index: 10; /* Ensures they stay above the image */
+            opacity: 1; /* Makes sure they are visible */
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 2.25rem; /* Adjust size */
+            height: 2.25rem;
+            background-color: rgba(0, 0, 0, 0.5); /* Adds slight background for visibility */
+            border-radius: 50%; /* Makes them circular */
+        }
+
 
 
         .footer {
@@ -375,21 +407,21 @@
 
         .alphabet-buttons button {
             width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #11263d;
-    background-color: white;
-    color: #11263d;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #11263d;
+            background-color: white;
+            color: #11263d;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.alphabet-buttons button:hover {
-    background-color: #11263d;
-    color: white;
-}
+        .alphabet-buttons button:hover {
+            background-color: #11263d;
+            color: white;
+        }
 
 
             .info-section {
@@ -504,7 +536,7 @@
         }
     }
 
-        .chatbot-container {
+        /* .chatbot-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -566,13 +598,99 @@
             background: #11263d;
             color: white;
             text-align: right;
-        }
+        } */
         .results{
             z-index:2;
         }
         /* .results:hover{
             background-color:rgb(221, 221, 221);
         } */
+
+         
+    #chat-btn{
+        width:45px;
+        height:45px;
+    }
+    #chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background: #53c89b;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        #chat-toggle:hover{
+            background: #4bae88;
+        }
+
+    #chatbox {
+        width: 300px;
+        height: 485px;
+        border: 2px solid #11263d;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        background: #ffffff;
+        display: none;
+
+        flex-direction: column;
+        z-index:2;
+    }
+
+    #messages {
+        flex: 1; /* Takes available space */
+        overflow-y: auto;
+        padding: 10px;
+        max-height: 400px; /* Prevents excessive height */
+    }
+
+    /* Updated input container */
+    .input-and-button {
+        display: flex;
+        flex-direction: row;
+        gap: 2px;
+        width: 94%;
+        position: relative; /* Ensures it's inside chatbox */
+        bottom: 0; 
+        padding: 10px;
+        background: white;
+        border-top: 1px solid #ccc; /* Separates from messages */
+    }
+
+    /* Input box */
+    #chat-input {
+        flex: 1; /* Takes available space */
+        padding: 5px;
+        border: 1px solid #11263d;
+        border-radius: 5px;
+        background: #f1f1f1;
+    }
+
+    /* Send button */
+    #send-btn {
+        border: none;
+        border-radius: 5px;
+        background-color: #11263d;
+        color: white;
+        cursor: pointer;
+        padding: 6px 10px;
+    }
+
+    /* Button hover effect */
+    #send-btn:hover {
+        background-color: #0a1a2b;
+    }
+
+    #strt-sentence{
+        padding-left:9px;
+    }
+
+        
+
     </style>
 </head>
 <body>
@@ -713,7 +831,24 @@
     </div>
 </div>
 
-</div>
+</div>  <!--dont touch this div tag-->
+
+    <!-- new chat button -->
+    <!-- <button id="chat-toggle">💬</button> -->
+    <button id="chat-toggle">
+        <img id ="chat-btn" src="{% static 'images/icon.png'%}" alt="Chat">
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chatbox">
+        <p id="strt-sentence"><b> AASHAbot:</b> Hello! Ask me anything.</p>
+        <div id="messages"></div>
+        <div class="input-and-button">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="send-btn">Send</button>
+        </div>
+        
+    </div>
 
     
     <!-- Footer -->
@@ -721,7 +856,7 @@
      <section class="info-section">
         <!-- First Block -->
         <div class="info-container">
-            <div class="info-text">
+            <div class="info-text"
                 <h2>Why choose AASHA MedEase</h2>
                 <p><strong>The right answers the first time</strong></p>
                 <p>
@@ -748,7 +883,9 @@
         </div>
     </section>
 
-   <!--Chatbot-->
+
+
+   <!-- Harshita's Chatbot
     <div class="chatbot-container">
         <div class="chatbot-body" id="chatbot-body">
             <div id="chat-messages"></div>
@@ -760,7 +897,9 @@
         <button class="chatbot-button" onclick="toggleChatbot()">
             <img src="{% static 'images/icon.png'%}" alt="Chat">
         </button>
-    </div>
+    </div> -->
+
+
     <!--Footer-->
     <div class="footer" id="footer">
     <div class="newsletter">
@@ -791,6 +930,8 @@
         <p>Email: <a href="mailto:support@aashamedease.com">support@aashamedease.com</a></p>
     </div>
 </div>
+
+
 <script>
 
         function toggleMenu() {
@@ -799,14 +940,20 @@
 
     
 </script>
-<script>
-    function openDiseasePage(letter) {
-        window.location.href = `disease.html?letter=${letter}`;
-    }
 
-        
+<script>
+    // function openDiseasePage(letter) {
+    //     window.location.href = `diseases.html?letter=${letter}`;
+    // }
+    function openDiseasePage(letter) {
+        window.location.href = `/diseases/?letter=${letter}`;
+    }
+  
 </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         document.getElementById("search").addEventListener("input", function() {
             let query = this.value.trim();
@@ -842,6 +989,8 @@
                 });
         });
     </script>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const infoSections = document.querySelectorAll(".info-container");
@@ -860,9 +1009,9 @@
     });
 </script>
 
-</script>
 
-<script>
+
+<!-- <script>
 const qaPairs = {
 "What are the signs of a heart attack?": "The signs of a heart attack can include chest pain, discomfort in the upper body (arms, neck, jaw), shortness of breath, cold sweat, nausea, or lightheadedness. If you experience these symptoms, seek medical help immediately.",
 "What does diabetes feel like?": "Diabetes can cause symptoms like increased thirst, frequent urination, fatigue, blurred vision, and slow-healing wounds. It can also lead to low blood sugar symptoms like shakiness, sweating, dizziness, and hunger.",
@@ -906,7 +1055,61 @@ const qaPairs = {
         chatMessages.appendChild(messageDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-</script>
+</script> -->
+
+
+<!-- <script>
+    document.getElementById("chat-toggle").addEventListener("click", function() {
+        var chatbox = document.getElementById("chatbox");
+        chatbox.style.display = chatbox.style.display === "none" ? "block" : "none";
+    });
+
+    document.getElementById("send-btn").addEventListener("click", function() {
+        var input = document.getElementById("chat-input").value;
+        if (!input.trim()) return;
+
+        // Append user message
+        var messages = document.getElementById("messages");
+        messages.innerHTML += "<p><b>You:</b> " + input + "</p>";
+
+        // Fetch chatbot response
+        fetch("/chatbot/?query=" + encodeURIComponent(input))
+            .then(response => response.json())
+            .then(data => {
+                messages.innerHTML += "<p><b>AASHAbot:</b> " + data.response + "</p>";
+            });
+
+        document.getElementById("chat-input").value = "";
+    });
+</script> -->
+
+<Script>
+    document.getElementById("chat-toggle").addEventListener("click", function() {
+        var chatbox = document.getElementById("chatbox");
+        var currentDisplay = getComputedStyle(chatbox).display;
+        
+        // Toggle between "none" and "flex" for better layout handling
+        chatbox.style.display = (currentDisplay === "none") ? "flex" : "none";
+    });
+
+    document.getElementById("send-btn").addEventListener("click", function() {
+        var input = document.getElementById("chat-input").value.trim();
+        if (!input) return;
+
+        var messages = document.getElementById("messages");
+        messages.innerHTML += `<p><b>You:</b> ${input}</p>`;
+
+        fetch("/chatbot/?query=" + encodeURIComponent(input))
+            .then(response => response.json())
+            .then(data => {
+                messages.innerHTML += `<p><b>AASHAbot:</b> ${data.response}</p>`;
+                messages.scrollTop = messages.scrollHeight; // Keep chat scrolled to bottom
+            });
+
+        document.getElementById("chat-input").value = "";
+    });
+</Script>
+
 
 </body>
 </html>

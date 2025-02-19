@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app1 import views
 
 from app1.views import search_doctors
@@ -70,6 +70,10 @@ urlpatterns = [
     path('doctor/profile/<int:pk>/', views.doctor_profile_actual, name='doctor_profile_actual'),
 
     path('mark_appointment_completed/<int:appointment_id>/', views.mark_appointment_completed, name='mark_appointment_completed'),
+
+    path("chatbot/", views.chatbot_api, name="chatbot_api"),
+
+    path('diseases/', views.diseases_view, name='diseases'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -44,11 +44,36 @@
 
     <script>
         const diseases = {
-            "A": ["Asthma", "Asthma is a chronic (long-term) condition that affects the airways in the lungs, making them inflamed, swollen, and narrowed. This can cause breathing difficulties, wheezing, coughing, chest tightness, and shortness of breath. Asthma symptoms can vary in severity and may be triggered by allergens (like pollen, dust mites, or pet dander), respiratory infections, cold air, smoke, strong odors, or physical activity.", "Symptoms", "Coughing, Wheezing, Shortness of Breath","Alzheimer's","Alzheimer’s disease is a progressive brain disorder that leads to memory loss, cognitive decline, and difficulty with daily tasks. It is the most common cause of dementia, a general term for conditions that cause impaired thinking and memory. Alzheimer’s primarily affects older adults, but early-onset cases can occur before age 65.","Symptoms" , "Memory loss, Confusion, Mood swings"],
-            "B": ["Bronchitis - Symptoms: Coughing, Fatigue, Chest discomfort", "Botulism - Symptoms: Weak muscles, Difficulty breathing, Paralysis"],
-            "C": ["Cancer - Symptoms: Unexplained weight loss, Fatigue, Lumps", "Chickenpox - Symptoms: Itchy rash, Fever, Fatigue"],
+            "A": ["Asthma - Symptoms: Coughing, Wheezing, Shortness of breath", 
+                "Alzheimer's - Symptoms: Memory loss, Confusion, Mood swings"],
+            "B": ["Bronchitis - Symptoms: Coughing, Fatigue, Chest discomfort", 
+                "Botulism - Symptoms: Weak muscles, Difficulty breathing, Paralysis"],
+            "C": ["Cancer - Symptoms: Unexplained weight loss, Fatigue, Lumps", 
+                "Chickenpox - Symptoms: Itchy rash, Fever, Fatigue"],
             "D": ["Diabetes - Symptoms: Frequent urination, Increased thirst, Fatigue"],
-            
+            "E": ["Eczema - Symptoms: Dry, itchy skin, Rashes"],
+            "F": ["Flu - Symptoms: Fever, Chills, Body aches"],
+            "G": ["Gout - Symptoms: Joint pain, Swelling, Redness"],
+            "H": ["Hypertension - Symptoms: High blood pressure, Headaches, Dizziness"],
+            "I": ["Influenza - Symptoms: Fever, Sore throat, Muscle pain"],
+            "J": ["Jaundice - Symptoms: Yellow skin, Dark urine, Fatigue"],
+            "K": ["Kidney Stones - Symptoms: Severe pain, Blood in urine"],
+            "L": ["Lupus - Symptoms: Fatigue, Joint pain, Skin rash"],
+            "M": ["Migraine - Symptoms: Severe headache, Nausea, Sensitivity to light"],
+            "N": ["Narcolepsy - Symptoms: Excessive sleepiness, Sudden sleep attacks"],
+            "O": ["Osteoporosis - Symptoms: Weak bones, Increased fracture risk"],
+            "P": ["Pneumonia - Symptoms: Cough, Fever, Difficulty breathing"],
+            "Q": ["Q Fever - Symptoms: Fever, Chills, Sweating"],
+            "R": ["Rabies - Symptoms: Fever, Hallucinations, Seizures"],
+            "S": ["Stroke - Symptoms: Weakness, Slurred speech, Confusion"],
+            "T": ["Tuberculosis - Symptoms: Coughing blood, Night sweats, Fatigue"],
+            "U": ["Ulcers - Symptoms: Stomach pain, Bloating, Nausea"],
+            "V": ["Varicella (Chickenpox) - Symptoms: Rash, Itching, Fever"],
+            "W": ["Whooping Cough - Symptoms: Severe coughing fits, Vomiting"],
+            "X": ["Xeroderma - Symptoms: Dry skin, Scaling"],
+            "Y": ["Yellow Fever - Symptoms: Jaundice, Fever, Vomiting"],
+            "Z": ["Zika Virus - Symptoms: Rash, Fever, Joint pain"]
+
         };
 
         function loadDiseases() {
