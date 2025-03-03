@@ -507,3 +507,8 @@ def diseases_view(request):
     letter = request.GET.get('letter', '')  # Get 'letter' from URL
     return render(request, 'disease.html', {'letter': letter})
 
+def about_us(request):
+    return render(request, 'About us.html')  # Renders 'about_us.html'
+
+def faqs(request):
+    return render(request, 'faq\'s.html')
