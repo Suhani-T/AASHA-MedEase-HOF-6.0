@@ -638,6 +638,82 @@
     {
         "question": "How can I prevent earaches?",
         "answer": "Avoid inserting objects into the ear, keep ears dry, manage allergies, and avoid smoking to prevent earaches."
+    },
+    {
+        "question": "I have a fever, chills, muscle aches, cough, congestion, and headaches. What could it be?",
+        "answer": "It sounds like you may have influenza (flu). Please get plenty of rest, stay hydrated, and consult a doctor if symptoms worsen. Wishing you a speedy recovery!"
+    },
+    {
+        "question": "I'm feeling tired all the time, experiencing unexplained weight loss, increased thirst, and frequent urination. What could be the cause?",
+        "answer": "You may have diabetes. It would be best to consult a doctor for proper diagnosis and management. Take care!"
+    },
+    {
+        "question": "I have persistent coughing, shortness of breath, chest tightness, and wheezing. Could this be asthma?",
+        "answer": "Your symptoms may indicate asthma. It's important to see a doctor for proper treatment and management. Avoid triggers and take prescribed medications. Stay safe!"
+    },
+    {
+        "question": "I'm experiencing headaches, dizziness, shortness of breath, and nosebleeds. What might be wrong?",
+        "answer": "You might have high blood pressure (hypertension). Please monitor your blood pressure and consult a doctor for guidance on lifestyle changes and medication. Take care!"
+    },
+    {
+        "question": "I have a sore throat, runny nose, sneezing, mild cough, and body aches. What could it be?",
+        "answer": "It sounds like the common cold. Get some rest, drink warm fluids, and take care of yourself. Hope you feel better soon!"
+    },
+    {
+        "question": "How do I treat a sore throat and persistent cough?",
+        "answer": "Try warm tea with honey, lozenges, and staying hydrated. If symptoms persist, please consult a doctor. Get well soon!"
+    },
+    {
+        "question": "I have sudden sharp chest pain, shortness of breath, nausea, and sweating. Is this serious?",
+        "answer": "This could be a sign of a heart attack. Please seek immediate medical attention. Stay strong!"
+    },
+    {
+        "question": "I'm feeling nauseous, have vomiting, diarrhea, and stomach cramps. What should I do?",
+        "answer": "It sounds like food poisoning or a stomach infection. Stay hydrated and get plenty of rest. If symptoms worsen, please consult a doctor. Hope you recover soon!"
+    },
+    {
+        "question": "How can I prevent getting the flu?",
+        "answer": "You can prevent the flu by getting vaccinated, washing your hands frequently, and avoiding close contact with sick individuals. Stay safe!"
+    },
+    {
+        "question": "I feel extremely sad, have lost interest in activities, feel fatigued, and have trouble sleeping. Could this be depression?",
+        "answer": "You may be experiencing symptoms of depression. Please reach out to a mental health professional for support. You're not alone, and help is available. Take care!"
+    },
+    {
+        "question": "I have joint pain, stiffness, and swelling, especially in the morning. What could it be?",
+        "answer": "These symptoms may indicate arthritis. Consider seeing a doctor for a proper diagnosis and treatment plan. Wishing you relief and comfort!"
+    },
+    {
+        "question": "How do I treat a migraine?",
+        "answer": "Try resting in a dark, quiet room, staying hydrated, and using a cold compress. If migraines persist, consult a doctor for further evaluation. Hope you feel better soon!"
+    },
+    {
+        "question": "I have itchy, red, and watery eyes along with sneezing and a runny nose. Could this be an allergy?",
+        "answer": "It sounds like seasonal allergies. Avoid allergens, take antihistamines if needed, and consult a doctor for further advice. Stay well!"
+    },
+    {
+        "question": "I'm experiencing sharp pain while urinating, frequent urination, and lower abdominal pain. What could it be?",
+        "answer": "This may be a urinary tract infection (UTI). Drinking plenty of water and consulting a doctor for antibiotics can help. Take care!"
+    },
+    {
+        "question": "How can I prevent food poisoning?",
+        "answer": "Ensure proper food hygiene by washing hands, cooking food thoroughly, and storing food correctly. Stay safe and healthy!"
+    },
+    {
+        "question": "I have persistent heartburn, acid reflux, and difficulty swallowing. Could this be GERD?",
+        "answer": "Your symptoms suggest gastroesophageal reflux disease (GERD). Avoid spicy foods, eat smaller meals, and consider seeing a doctor for treatment. Hope you feel better soon!"
+    },
+    {
+        "question": "I have a persistent cough that produces mucus, shortness of breath, and wheezing. Could this be bronchitis?",
+        "answer": "It sounds like bronchitis. Rest, stay hydrated, and consult a doctor if symptoms persist. Wishing you a quick recovery!"
+    },
+    {
+        "question": "What should I do for a fever?",
+        "answer": "Rest, stay hydrated, and take fever-reducing medication if needed. If the fever is high or persistent, seek medical attention. Hope you feel better soon!"
+    },
+    {
+        "question": "I have fatigue, cold hands and feet, dizziness, and pale skin. Could this be anemia?",
+        "answer": "These symptoms suggest anemia. Eating iron-rich foods and consulting a doctor for further evaluation can help. Wishing you good health!"
     }
     
 ]
