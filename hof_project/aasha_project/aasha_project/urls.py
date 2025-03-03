@@ -75,6 +75,10 @@ urlpatterns = [
 
     path('diseases/', views.diseases_view, name='diseases'),
 
+    path('about-us/', views.about_us, name='about_us'),
+    path('faqs/', views.faqs, name='faqs'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
